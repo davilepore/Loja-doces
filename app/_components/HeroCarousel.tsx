@@ -10,7 +10,7 @@ export default function HeroCarousel() {
     <Carousel
       className="w-screen"
       opts={{
-        align: "start",
+        align: "center",
         loop: true,
       }}
       plugins={[
