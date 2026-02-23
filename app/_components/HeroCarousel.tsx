@@ -22,7 +22,7 @@ export default function HeroCarousel() {
     >
       <CarouselContent>
         <CarouselItem className="basis-full">
-          <div className="relative w-full h-[50vh] sm:h-[70vh]">
+          <div className="relative w-full h-[40vh] sm:h-[70vh]">
             <Image
               src="/docinhos.jpg"
               fill
@@ -35,7 +35,7 @@ export default function HeroCarousel() {
         </CarouselItem>
 
         <CarouselItem className="basis-full">
-          <div className="relative w-full h-[50vh] sm:h-[70vh]">
+          <div className="relative w-full h-[40vh] sm:h-[70vh]">
             <Image
               src="/docinhos.jpg"
               fill
@@ -47,7 +47,7 @@ export default function HeroCarousel() {
         </CarouselItem>
 
         <CarouselItem className="basis-full">
-          <div className="relative w-full h-[50vh] sm:h-[70vh]">
+          <div className="relative w-full h-[40vh] sm:h-[70vh]">
             <Image
               src="/docinhos.jpg"
               fill
