@@ -1,5 +1,6 @@
 import HeroCarousel from "./_components/HeroCarousel";
 import Navbar from "./_components/Navbar";
+import SweetTypes from "./_components/SweetTypes";
 
 export default function Home() {
   return (
@@ -7,6 +8,8 @@ export default function Home() {
       <Navbar />
 
       <HeroCarousel />
+
+      <SweetTypes />
     </div>
   );
 }
