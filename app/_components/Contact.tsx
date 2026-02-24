@@ -10,18 +10,18 @@ function Contact() {
       </div>
 
       <div className="w-full h-5 bg-amber-950"></div>
-      <div className="space-y-2 text-lg">
+      <div className="space-y-2 text-lg font-semibold">
         <p className="flex items-center gap-1">
           <FaWhatsapp color="#25D366" size={24} />
-          Whatsapp
+          (21) 9 9999-9999
         </p>
         <p className="flex items-center gap-1">
           <FaInstagram color="#E1306C" size={24} />
-          Instagram
+          @docesmabecky
         </p>
         <p className="flex items-center gap-1">
           <FaEnvelope color="#EA4335" size={24} />
-          Email
+          docesmabecky@gmail.com
         </p>
       </div>
     </div>
