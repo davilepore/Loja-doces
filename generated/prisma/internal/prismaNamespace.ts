@@ -384,7 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Doces: 'Doces'
+  Doce: 'Doce'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,81 +400,81 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "doces"
+    modelProps: "doce"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    Doces: {
-      payload: Prisma.$DocesPayload<ExtArgs>
-      fields: Prisma.DocesFieldRefs
+    Doce: {
+      payload: Prisma.$DocePayload<ExtArgs>
+      fields: Prisma.DoceFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.DocesFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload> | null
+          args: Prisma.DoceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.DocesFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>
+          args: Prisma.DoceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>
         }
         findFirst: {
-          args: Prisma.DocesFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload> | null
+          args: Prisma.DoceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.DocesFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>
+          args: Prisma.DoceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>
         }
         findMany: {
-          args: Prisma.DocesFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>[]
+          args: Prisma.DoceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>[]
         }
         create: {
-          args: Prisma.DocesCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>
+          args: Prisma.DoceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>
         }
         createMany: {
-          args: Prisma.DocesCreateManyArgs<ExtArgs>
+          args: Prisma.DoceCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.DocesCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>[]
+          args: Prisma.DoceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>[]
         }
         delete: {
-          args: Prisma.DocesDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>
+          args: Prisma.DoceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>
         }
         update: {
-          args: Prisma.DocesUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>
+          args: Prisma.DoceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>
         }
         deleteMany: {
-          args: Prisma.DocesDeleteManyArgs<ExtArgs>
+          args: Prisma.DoceDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.DocesUpdateManyArgs<ExtArgs>
+          args: Prisma.DoceUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.DocesUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>[]
+          args: Prisma.DoceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>[]
         }
         upsert: {
-          args: Prisma.DocesUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocesPayload>
+          args: Prisma.DoceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocePayload>
         }
         aggregate: {
-          args: Prisma.DocesAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateDoces>
+          args: Prisma.DoceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDoce>
         }
         groupBy: {
-          args: Prisma.DocesGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.DocesGroupByOutputType>[]
+          args: Prisma.DoceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DoceGroupByOutputType>[]
         }
         count: {
-          args: Prisma.DocesCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.DocesCountAggregateOutputType> | number
+          args: Prisma.DoceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DoceCountAggregateOutputType> | number
         }
       }
     }
@@ -517,16 +517,15 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const DocesScalarFieldEnum = {
+export const DoceScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
-  tipo: 'tipo',
+  categoria: 'categoria',
   especificacao: 'especificacao',
-  imageUrl: 'imageUrl',
-  criadoEm: 'criadoEm'
+  imagemUrl: 'imagemUrl'
 } as const
 
-export type DocesScalarFieldEnum = (typeof DocesScalarFieldEnum)[keyof typeof DocesScalarFieldEnum]
+export type DoceScalarFieldEnum = (typeof DoceScalarFieldEnum)[keyof typeof DoceScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -580,16 +579,30 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'DateTime'
+ * Reference to a field of type 'Categoria'
  */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+export type EnumCategoriaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Categoria'>
     
 
 
 /**
- * Reference to a field of type 'DateTime[]'
+ * Reference to a field of type 'Categoria[]'
  */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+export type ListEnumCategoriaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Categoria[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Especificacao'
+ */
+export type EnumEspecificacaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Especificacao'>
+    
+
+
+/**
+ * Reference to a field of type 'Especificacao[]'
+ */
+export type ListEnumEspecificacaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Especificacao[]'>
     
 
 
@@ -701,7 +714,7 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  doces?: Prisma.DocesOmit
+  doce?: Prisma.DoceOmit
 }
 
 /* Types for Logging */

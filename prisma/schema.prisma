@@ -15,11 +15,28 @@ datasource db {
 }
 
 
-model Doces{
-  id Int @id @default(autoincrement())
-  nome String
-  tipo String
-  especificacao String
-  imageUrl String
-  criadoEm DateTime @default(now())
+
+enum Categoria {
+  BOLOS
+  DOCINHOS
+  SOBREMESAS
+}
+
+enum Especificacao {
+  CASEIRO
+  VULCAO
+  ANIVERSARIO
+  GOURMET
+  FINOS
+  BROWNIES
+  TRAVESSA
+  COOKIES
+}
+
+model Doce {
+  id            Int           @id @default(autoincrement())
+  nome          String
+  categoria     Categoria
+  especificacao Especificacao
+  imagemUrl     String
 }

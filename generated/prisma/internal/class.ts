@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.4.1",
   "engineVersion": "55ae170b1ced7fc6ed07a15f110549408c501bb3",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Doces {\n  id            Int      @id @default(autoincrement())\n  nome          String\n  tipo          String\n  especificacao String\n  imageUrl      String\n  criadoEm      DateTime @default(now())\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Categoria {\n  BOLOS\n  DOCINHOS\n  SOBREMESAS\n}\n\nenum Especificacao {\n  CASEIRO\n  VULCAO\n  ANIVERSARIO\n  GOURMET\n  FINOS\n  BROWNIES\n  TRAVESSA\n  COOKIES\n}\n\nmodel Doce {\n  id            Int           @id @default(autoincrement())\n  nome          String\n  categoria     Categoria\n  especificacao Especificacao\n  imagemUrl     String\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Doces\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"especificacao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"criadoEm\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Doce\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"categoria\",\"kind\":\"enum\",\"type\":\"Categoria\"},{\"name\":\"especificacao\",\"kind\":\"enum\",\"type\":\"Especificacao\"},{\"name\":\"imagemUrl\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[\"where\",\"Doces.findUnique\",\"Doces.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Doces.findFirst\",\"Doces.findFirstOrThrow\",\"Doces.findMany\",\"data\",\"Doces.createOne\",\"Doces.createMany\",\"Doces.createManyAndReturn\",\"Doces.updateOne\",\"Doces.updateMany\",\"Doces.updateManyAndReturn\",\"create\",\"update\",\"Doces.upsertOne\",\"Doces.deleteOne\",\"Doces.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Doces.groupBy\",\"Doces.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"nome\",\"tipo\",\"especificacao\",\"imageUrl\",\"criadoEm\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
-  graph: "MAsQCRwAACUAMB0AAAQAEB4AACUAMB8CAAAAASABACcAISEBACcAISIBACcAISMBACcAISRAACgAIQEAAAABACABAAAAAQAgCRwAACUAMB0AAAQAEB4AACUAMB8CACYAISABACcAISEBACcAISIBACcAISMBACcAISRAACgAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAGHwIAAAABIAEAAAABIQEAAAABIgEAAAABIwEAAAABJEAAAAABAQgAAAkAIAYfAgAAAAEgAQAAAAEhAQAAAAEiAQAAAAEjAQAAAAEkQAAAAAEBCAAACwAwAQgAAAsAMAYfAgAwACEgAQAuACEhAQAuACEiAQAuACEjAQAuACEkQAAvACECAAAAAQAgCAAADgAgBh8CADAAISABAC4AISEBAC4AISIBAC4AISMBAC4AISRAAC8AIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAACkAIBYAACoAIBcAAC0AIBgAACwAIBkAACsAIAkcAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEjAQAcACEkQAAdACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAkcAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEjAQAcACEkQAAdACENFQAAHwAgFgAAJAAgFwAAHwAgGAAAHwAgGQAAHwAgJQIAAAABJgIAAAAEJwIAAAAEKAIAAAABKQIAAAABKgIAAAABKwIAAAABLAIAIwAhDhUAAB8AIBgAACIAIBkAACIAICUBAAAAASYBAAAABCcBAAAABCgBAAAAASkBAAAAASoBAAAAASsBAAAAASwBACEAIS0BAAAAAS4BAAAAAS8BAAAAAQsVAAAfACAYAAAgACAZAAAgACAlQAAAAAEmQAAAAAQnQAAAAAQoQAAAAAEpQAAAAAEqQAAAAAErQAAAAAEsQAAeACELFQAAHwAgGAAAIAAgGQAAIAAgJUAAAAABJkAAAAAEJ0AAAAAEKEAAAAABKUAAAAABKkAAAAABK0AAAAABLEAAHgAhCCUCAAAAASYCAAAABCcCAAAABCgCAAAAASkCAAAAASoCAAAAASsCAAAAASwCAB8AIQglQAAAAAEmQAAAAAQnQAAAAAQoQAAAAAEpQAAAAAEqQAAAAAErQAAAAAEsQAAgACEOFQAAHwAgGAAAIgAgGQAAIgAgJQEAAAABJgEAAAAEJwEAAAAEKAEAAAABKQEAAAABKgEAAAABKwEAAAABLAEAIQAhLQEAAAABLgEAAAABLwEAAAABCyUBAAAAASYBAAAABCcBAAAABCgBAAAAASkBAAAAASoBAAAAASsBAAAAASwBACIAIS0BAAAAAS4BAAAAAS8BAAAAAQ0VAAAfACAWAAAkACAXAAAfACAYAAAfACAZAAAfACAlAgAAAAEmAgAAAAQnAgAAAAQoAgAAAAEpAgAAAAEqAgAAAAErAgAAAAEsAgAjACEIJQgAAAABJggAAAAEJwgAAAAEKAgAAAABKQgAAAABKggAAAABKwgAAAABLAgAJAAhCRwAACUAMB0AAAQAEB4AACUAMB8CACYAISABACcAISEBACcAISIBACcAISMBACcAISRAACgAIQglAgAAAAEmAgAAAAQnAgAAAAQoAgAAAAEpAgAAAAEqAgAAAAErAgAAAAEsAgAfACELJQEAAAABJgEAAAAEJwEAAAAEKAEAAAABKQEAAAABKgEAAAABKwEAAAABLAEAIgAhLQEAAAABLgEAAAABLwEAAAABCCVAAAAAASZAAAAABCdAAAAABChAAAAAASlAAAAAASpAAAAAAStAAAAAASxAACAAIQAAAAAAATABAAAAAQEwQAAAAAEFMAIAAAABMQIAAAABMgIAAAABMwIAAAABNAIAAAABAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIaGAUbGQs"
+  strings: JSON.parse("[\"where\",\"Doce.findUnique\",\"Doce.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Doce.findFirst\",\"Doce.findFirstOrThrow\",\"Doce.findMany\",\"data\",\"Doce.createOne\",\"Doce.createMany\",\"Doce.createManyAndReturn\",\"Doce.updateOne\",\"Doce.updateMany\",\"Doce.updateManyAndReturn\",\"create\",\"update\",\"Doce.upsertOne\",\"Doce.deleteOne\",\"Doce.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Doce.groupBy\",\"Doce.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"nome\",\"Categoria\",\"categoria\",\"Especificacao\",\"especificacao\",\"imagemUrl\",\"equals\",\"in\",\"notIn\",\"not\",\"lt\",\"lte\",\"gt\",\"gte\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "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"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -69,7 +69,7 @@ export interface PrismaClientConstructor {
    * ```
    * const prisma = new PrismaClient()
    * // Fetch zero or more Doces
-   * const doces = await prisma.doces.findMany()
+   * const doces = await prisma.doce.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -91,7 +91,7 @@ export interface PrismaClientConstructor {
  * ```
  * const prisma = new PrismaClient()
  * // Fetch zero or more Doces
- * const doces = await prisma.doces.findMany()
+ * const doces = await prisma.doce.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -185,14 +185,14 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.doces`: Exposes CRUD operations for the **Doces** model.
+   * `prisma.doce`: Exposes CRUD operations for the **Doce** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Doces
-    * const doces = await prisma.doces.findMany()
+    * const doces = await prisma.doce.findMany()
     * ```
     */
-  get doces(): Prisma.DocesDelegate<ExtArgs, { omit: OmitOpts }>;
+  get doce(): Prisma.DoceDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

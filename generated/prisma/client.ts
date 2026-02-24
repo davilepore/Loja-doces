@@ -30,7 +30,7 @@ export * from "./enums"
  * ```
  * const prisma = new PrismaClient()
  * // Fetch zero or more Doces
- * const doces = await prisma.doces.findMany()
+ * const doces = await prisma.doce.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,7 +40,7 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Doces
+ * Model Doce
  * 
  */
-export type Doces = Prisma.DocesModel
+export type Doce = Prisma.DoceModel
