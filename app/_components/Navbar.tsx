@@ -20,10 +20,10 @@ export default function Navbar() {
           {/* Textos esquerda (Desktop) */}
           <div className="hidden md:flex items-center gap-6">
             <span className="flex justify-center w-20 text-sm font-medium text-gray-700 hover:text-pink-500 cursor-pointer">
-              Sobre
+              Sobre Nós
             </span>
             <span className="flex justify-center w-20 text-sm font-medium text-gray-700 hover:text-pink-500 cursor-pointer">
-              Produtos
+              Doces
             </span>
           </div>
         </div>
@@ -79,10 +79,10 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-white border-t shadow-lg px-4 py-4 space-y-4 text-center">
           <span className="block hover:text-pink-500 cursor-pointer">
-            Sobre
+            Sobre Nós
           </span>
           <span className="block hover:text-pink-500 cursor-pointer">
-            Produtos
+            Doces
           </span>
           <span className="block hover:text-pink-500 cursor-pointer">
             Contato
