@@ -8,8 +8,8 @@ export default function SweetTypes() {
     { id: 3, img: "/brownie.jpg", nome: "Sobremesas" },
   ];
   return (
-    <section className="mt-30 space-y-10">
-      <h2 className="text-center text-3xl">Nossos doces</h2>
+    <section className="mt-20 space-y-10">
+      <h2 className="text-center text-3xl font-semibold">Nossos doces</h2>
       {/* MOBILE */}
       <div className="md:hidden">
         <Carousel
