@@ -128,7 +128,7 @@ async function main() {
       id: 14,
       nome: "Cookie Triple Chocolate",
       categoria: Categoria.SOBREMESAS,
-      especificacao: Especificacao.COOKIES,
+      especificacao: Especificacao.BROWNIES,
       imagemUrl:
         "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500",
     },
@@ -152,7 +152,7 @@ async function main() {
       id: 17,
       nome: "Cookie Red Velvet & White Chocolate",
       categoria: Categoria.SOBREMESAS,
-      especificacao: Especificacao.COOKIES,
+      especificacao: Especificacao.BROWNIES,
       imagemUrl:
         "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?w=500",
     },
@@ -168,7 +168,7 @@ async function main() {
       id: 19,
       nome: "Cookie de Aveia e Passas",
       categoria: Categoria.SOBREMESAS,
-      especificacao: Especificacao.COOKIES,
+      especificacao: Especificacao.BROWNIES,
       imagemUrl:
         "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500",
     },
