@@ -216,6 +216,7 @@ export type DoceWhereInput = {
   categoria?: Prisma.EnumCategoriaFilter<"Doce"> | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFilter<"Doce"> | $Enums.Especificacao
   imagemUrl?: Prisma.StringFilter<"Doce"> | string
+  itensCarrinho?: Prisma.ItemCarrinhoListRelationFilter
 }
 
 export type DoceOrderByWithRelationInput = {
@@ -224,6 +225,7 @@ export type DoceOrderByWithRelationInput = {
   categoria?: Prisma.SortOrder
   especificacao?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
+  itensCarrinho?: Prisma.ItemCarrinhoOrderByRelationAggregateInput
 }
 
 export type DoceWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +237,7 @@ export type DoceWhereUniqueInput = Prisma.AtLeast<{
   categoria?: Prisma.EnumCategoriaFilter<"Doce"> | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFilter<"Doce"> | $Enums.Especificacao
   imagemUrl?: Prisma.StringFilter<"Doce"> | string
+  itensCarrinho?: Prisma.ItemCarrinhoListRelationFilter
 }, "id">
 
 export type DoceOrderByWithAggregationInput = {
@@ -266,6 +269,7 @@ export type DoceCreateInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  itensCarrinho?: Prisma.ItemCarrinhoCreateNestedManyWithoutDoceInput
 }
 
 export type DoceUncheckedCreateInput = {
@@ -274,6 +278,7 @@ export type DoceUncheckedCreateInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  itensCarrinho?: Prisma.ItemCarrinhoUncheckedCreateNestedManyWithoutDoceInput
 }
 
 export type DoceUpdateInput = {
@@ -281,6 +286,7 @@ export type DoceUpdateInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  itensCarrinho?: Prisma.ItemCarrinhoUpdateManyWithoutDoceNestedInput
 }
 
 export type DoceUncheckedUpdateInput = {
@@ -289,6 +295,7 @@ export type DoceUncheckedUpdateInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  itensCarrinho?: Prisma.ItemCarrinhoUncheckedUpdateManyWithoutDoceNestedInput
 }
 
 export type DoceCreateManyInput = {
@@ -346,6 +353,11 @@ export type DoceSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type DoceScalarRelationFilter = {
+  is?: Prisma.DoceWhereInput
+  isNot?: Prisma.DoceWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -366,6 +378,95 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type DoceCreateNestedOneWithoutItensCarrinhoInput = {
+  create?: Prisma.XOR<Prisma.DoceCreateWithoutItensCarrinhoInput, Prisma.DoceUncheckedCreateWithoutItensCarrinhoInput>
+  connectOrCreate?: Prisma.DoceCreateOrConnectWithoutItensCarrinhoInput
+  connect?: Prisma.DoceWhereUniqueInput
+}
+
+export type DoceUpdateOneRequiredWithoutItensCarrinhoNestedInput = {
+  create?: Prisma.XOR<Prisma.DoceCreateWithoutItensCarrinhoInput, Prisma.DoceUncheckedCreateWithoutItensCarrinhoInput>
+  connectOrCreate?: Prisma.DoceCreateOrConnectWithoutItensCarrinhoInput
+  upsert?: Prisma.DoceUpsertWithoutItensCarrinhoInput
+  connect?: Prisma.DoceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DoceUpdateToOneWithWhereWithoutItensCarrinhoInput, Prisma.DoceUpdateWithoutItensCarrinhoInput>, Prisma.DoceUncheckedUpdateWithoutItensCarrinhoInput>
+}
+
+export type DoceCreateWithoutItensCarrinhoInput = {
+  nome: string
+  categoria: $Enums.Categoria
+  especificacao: $Enums.Especificacao
+  imagemUrl: string
+}
+
+export type DoceUncheckedCreateWithoutItensCarrinhoInput = {
+  id?: number
+  nome: string
+  categoria: $Enums.Categoria
+  especificacao: $Enums.Especificacao
+  imagemUrl: string
+}
+
+export type DoceCreateOrConnectWithoutItensCarrinhoInput = {
+  where: Prisma.DoceWhereUniqueInput
+  create: Prisma.XOR<Prisma.DoceCreateWithoutItensCarrinhoInput, Prisma.DoceUncheckedCreateWithoutItensCarrinhoInput>
+}
+
+export type DoceUpsertWithoutItensCarrinhoInput = {
+  update: Prisma.XOR<Prisma.DoceUpdateWithoutItensCarrinhoInput, Prisma.DoceUncheckedUpdateWithoutItensCarrinhoInput>
+  create: Prisma.XOR<Prisma.DoceCreateWithoutItensCarrinhoInput, Prisma.DoceUncheckedCreateWithoutItensCarrinhoInput>
+  where?: Prisma.DoceWhereInput
+}
+
+export type DoceUpdateToOneWithWhereWithoutItensCarrinhoInput = {
+  where?: Prisma.DoceWhereInput
+  data: Prisma.XOR<Prisma.DoceUpdateWithoutItensCarrinhoInput, Prisma.DoceUncheckedUpdateWithoutItensCarrinhoInput>
+}
+
+export type DoceUpdateWithoutItensCarrinhoInput = {
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
+  especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
+  imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type DoceUncheckedUpdateWithoutItensCarrinhoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
+  especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
+  imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+
+/**
+ * Count Type DoceCountOutputType
+ */
+
+export type DoceCountOutputType = {
+  itensCarrinho: number
+}
+
+export type DoceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  itensCarrinho?: boolean | DoceCountOutputTypeCountItensCarrinhoArgs
+}
+
+/**
+ * DoceCountOutputType without action
+ */
+export type DoceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DoceCountOutputType
+   */
+  select?: Prisma.DoceCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * DoceCountOutputType without action
+ */
+export type DoceCountOutputTypeCountItensCarrinhoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ItemCarrinhoWhereInput
+}
 
 
 export type DoceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -374,6 +475,8 @@ export type DoceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   categoria?: boolean
   especificacao?: boolean
   imagemUrl?: boolean
+  itensCarrinho?: boolean | Prisma.Doce$itensCarrinhoArgs<ExtArgs>
+  _count?: boolean | Prisma.DoceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["doce"]>
 
 export type DoceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -401,10 +504,18 @@ export type DoceSelectScalar = {
 }
 
 export type DoceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "categoria" | "especificacao" | "imagemUrl", ExtArgs["result"]["doce"]>
+export type DoceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  itensCarrinho?: boolean | Prisma.Doce$itensCarrinhoArgs<ExtArgs>
+  _count?: boolean | Prisma.DoceCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type DoceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DoceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $DocePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Doce"
-  objects: {}
+  objects: {
+    itensCarrinho: Prisma.$ItemCarrinhoPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nome: string
@@ -805,6 +916,7 @@ readonly fields: DoceFieldRefs;
  */
 export interface Prisma__DoceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  itensCarrinho<T extends Prisma.Doce$itensCarrinhoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Doce$itensCarrinhoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemCarrinhoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -856,6 +968,10 @@ export type DoceFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  /**
    * Filter, which Doce to fetch.
    */
   where: Prisma.DoceWhereUniqueInput
@@ -874,6 +990,10 @@ export type DoceFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  /**
    * Filter, which Doce to fetch.
    */
   where: Prisma.DoceWhereUniqueInput
@@ -891,6 +1011,10 @@ export type DoceFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Doce
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
   /**
    * Filter, which Doce to fetch.
    */
@@ -940,6 +1064,10 @@ export type DoceFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  /**
    * Filter, which Doce to fetch.
    */
   where?: Prisma.DoceWhereInput
@@ -988,6 +1116,10 @@ export type DoceFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  /**
    * Filter, which Doces to fetch.
    */
   where?: Prisma.DoceWhereInput
@@ -1030,6 +1162,10 @@ export type DoceCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Doce
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
   /**
    * The data needed to create a Doce.
    */
@@ -1078,6 +1214,10 @@ export type DoceUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Doce
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
   /**
    * The data needed to update a Doce.
    */
@@ -1145,6 +1285,10 @@ export type DoceUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  /**
    * The filter to search for the Doce to update in case it exists.
    */
   where: Prisma.DoceWhereUniqueInput
@@ -1171,6 +1315,10 @@ export type DoceDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  /**
    * Filter which Doce to delete.
    */
   where: Prisma.DoceWhereUniqueInput
@@ -1191,6 +1339,30 @@ export type DoceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Doce.itensCarrinho
+ */
+export type Doce$itensCarrinhoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItemCarrinho
+   */
+  select?: Prisma.ItemCarrinhoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ItemCarrinho
+   */
+  omit?: Prisma.ItemCarrinhoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItemCarrinhoInclude<ExtArgs> | null
+  where?: Prisma.ItemCarrinhoWhereInput
+  orderBy?: Prisma.ItemCarrinhoOrderByWithRelationInput | Prisma.ItemCarrinhoOrderByWithRelationInput[]
+  cursor?: Prisma.ItemCarrinhoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ItemCarrinhoScalarFieldEnum | Prisma.ItemCarrinhoScalarFieldEnum[]
+}
+
+/**
  * Doce without action
  */
 export type DoceDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1202,4 +1374,8 @@ export type DoceDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Doce
    */
   omit?: Prisma.DoceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
 }

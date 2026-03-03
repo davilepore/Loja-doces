@@ -19,6 +19,7 @@ export type Categoria = (typeof Categoria)[keyof typeof Categoria]
 
 
 export const Especificacao = {
+  CUPCAKE: 'CUPCAKE',
   CASEIRO: 'CASEIRO',
   VULCAO: 'VULCAO',
   ANIVERSARIO: 'ANIVERSARIO',
@@ -26,7 +27,9 @@ export const Especificacao = {
   FINOS: 'FINOS',
   BROWNIES: 'BROWNIES',
   TRAVESSA: 'TRAVESSA',
-  COOKIES: 'COOKIES'
+  PAVES: 'PAVES',
+  PALHA: 'PALHA',
+  POTE: 'POTE'
 } as const
 
 export type Especificacao = (typeof Especificacao)[keyof typeof Especificacao]

@@ -44,3 +44,13 @@ export { Prisma }
  * 
  */
 export type Doce = Prisma.DoceModel
+/**
+ * Model Carrinho
+ * 
+ */
+export type Carrinho = Prisma.CarrinhoModel
+/**
+ * Model ItemCarrinho
+ * 
+ */
+export type ItemCarrinho = Prisma.ItemCarrinhoModel

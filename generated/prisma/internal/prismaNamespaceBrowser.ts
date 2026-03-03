@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Doce: 'Doce'
+  Doce: 'Doce',
+  Carrinho: 'Carrinho',
+  ItemCarrinho: 'ItemCarrinho'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -81,6 +83,26 @@ export const DoceScalarFieldEnum = {
 export type DoceScalarFieldEnum = (typeof DoceScalarFieldEnum)[keyof typeof DoceScalarFieldEnum]
 
 
+export const CarrinhoScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  criadoEm: 'criadoEm'
+} as const
+
+export type CarrinhoScalarFieldEnum = (typeof CarrinhoScalarFieldEnum)[keyof typeof CarrinhoScalarFieldEnum]
+
+
+export const ItemCarrinhoScalarFieldEnum = {
+  id: 'id',
+  carrinhoId: 'carrinhoId',
+  doceId: 'doceId',
+  quantidade: 'quantidade',
+  configuracoes: 'configuracoes'
+} as const
+
+export type ItemCarrinhoScalarFieldEnum = (typeof ItemCarrinhoScalarFieldEnum)[keyof typeof ItemCarrinhoScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -89,10 +111,26 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

@@ -384,7 +384,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Doce: 'Doce'
+  Doce: 'Doce',
+  Carrinho: 'Carrinho',
+  ItemCarrinho: 'ItemCarrinho'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "doce"
+    modelProps: "doce" | "carrinho" | "itemCarrinho"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +480,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Carrinho: {
+      payload: Prisma.$CarrinhoPayload<ExtArgs>
+      fields: Prisma.CarrinhoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CarrinhoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CarrinhoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>
+        }
+        findFirst: {
+          args: Prisma.CarrinhoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CarrinhoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>
+        }
+        findMany: {
+          args: Prisma.CarrinhoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>[]
+        }
+        create: {
+          args: Prisma.CarrinhoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>
+        }
+        createMany: {
+          args: Prisma.CarrinhoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CarrinhoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>[]
+        }
+        delete: {
+          args: Prisma.CarrinhoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>
+        }
+        update: {
+          args: Prisma.CarrinhoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CarrinhoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CarrinhoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CarrinhoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>[]
+        }
+        upsert: {
+          args: Prisma.CarrinhoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarrinhoPayload>
+        }
+        aggregate: {
+          args: Prisma.CarrinhoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCarrinho>
+        }
+        groupBy: {
+          args: Prisma.CarrinhoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CarrinhoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CarrinhoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CarrinhoCountAggregateOutputType> | number
+        }
+      }
+    }
+    ItemCarrinho: {
+      payload: Prisma.$ItemCarrinhoPayload<ExtArgs>
+      fields: Prisma.ItemCarrinhoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ItemCarrinhoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ItemCarrinhoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>
+        }
+        findFirst: {
+          args: Prisma.ItemCarrinhoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ItemCarrinhoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>
+        }
+        findMany: {
+          args: Prisma.ItemCarrinhoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>[]
+        }
+        create: {
+          args: Prisma.ItemCarrinhoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>
+        }
+        createMany: {
+          args: Prisma.ItemCarrinhoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ItemCarrinhoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>[]
+        }
+        delete: {
+          args: Prisma.ItemCarrinhoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>
+        }
+        update: {
+          args: Prisma.ItemCarrinhoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>
+        }
+        deleteMany: {
+          args: Prisma.ItemCarrinhoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ItemCarrinhoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ItemCarrinhoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>[]
+        }
+        upsert: {
+          args: Prisma.ItemCarrinhoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemCarrinhoPayload>
+        }
+        aggregate: {
+          args: Prisma.ItemCarrinhoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateItemCarrinho>
+        }
+        groupBy: {
+          args: Prisma.ItemCarrinhoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ItemCarrinhoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ItemCarrinhoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ItemCarrinhoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -528,6 +678,26 @@ export const DoceScalarFieldEnum = {
 export type DoceScalarFieldEnum = (typeof DoceScalarFieldEnum)[keyof typeof DoceScalarFieldEnum]
 
 
+export const CarrinhoScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  criadoEm: 'criadoEm'
+} as const
+
+export type CarrinhoScalarFieldEnum = (typeof CarrinhoScalarFieldEnum)[keyof typeof CarrinhoScalarFieldEnum]
+
+
+export const ItemCarrinhoScalarFieldEnum = {
+  id: 'id',
+  carrinhoId: 'carrinhoId',
+  doceId: 'doceId',
+  quantidade: 'quantidade',
+  configuracoes: 'configuracoes'
+} as const
+
+export type ItemCarrinhoScalarFieldEnum = (typeof ItemCarrinhoScalarFieldEnum)[keyof typeof ItemCarrinhoScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -536,12 +706,28 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -603,6 +789,34 @@ export type EnumEspecificacaoFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'Especificacao[]'
  */
 export type ListEnumEspecificacaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Especificacao[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -715,6 +929,8 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   doce?: Prisma.DoceOmit
+  carrinho?: Prisma.CarrinhoOmit
+  itemCarrinho?: Prisma.ItemCarrinhoOmit
 }
 
 /* Types for Logging */

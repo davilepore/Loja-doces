@@ -9,4 +9,6 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Doce'
+export type * from './models/Carrinho'
+export type * from './models/ItemCarrinho'
 export type * from './commonInputTypes'
