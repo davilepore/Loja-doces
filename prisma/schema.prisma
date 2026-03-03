@@ -40,3 +40,28 @@ model Doce {
   especificacao Especificacao
   imagemUrl     String
 }
+
+model Produto {
+  id        Int     @id @default(autoincrement())
+  nome      String
+  tipo      String  
+  precoBase Float
+  itensCarrinho ItemCarrinho[]
+}
+
+model Carrinho {
+  id        Int      @id @default(autoincrement())
+  sessionId String   @unique
+  itens     ItemCarrinho[]
+  criadoEm  DateTime @default(now())
+}
+
+model ItemCarrinho {
+  id           Int      @id @default(autoincrement())
+  carrinho     Carrinho @relation(fields: [carrinhoId], references: [id])
+  carrinhoId   Int
+  produto      Produto  @relation(fields: [produtoId], references: [id])
+  produtoId    Int
+  quantidade   Int
+  configuracoes Json   
+}
