@@ -12,7 +12,7 @@ export const categorias = [
     nome: "docinhos",
     slug: "docinhos",
     titulo: "Nossos Docinhos",
-    imagem: "/brigadeiro.avif",
+    imagem: "/docinho.jpg",
     descricao: "Docinhos gourmet para qualquer ocasião.",
   },
   {
@@ -20,7 +20,7 @@ export const categorias = [
     nome: "sobremesas",
     slug: "sobremesas",
     titulo: "Nossas Sobremesas",
-    imagem: "/brownie.jpg",
+    imagem: "/sobremesa.jpg",
     descricao: "Sobremesas irresistíveis.",
   },
 ];

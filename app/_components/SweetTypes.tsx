@@ -24,6 +24,7 @@ export default function SweetTypes() {
                     src={categoria.imagem}
                     alt={categoria.nome}
                     fill
+                    sizes="100%"
                     className="object-cover"
                   />
 
@@ -56,6 +57,7 @@ export default function SweetTypes() {
               src={categoria.imagem}
               alt={categoria.nome}
               fill
+              sizes="100%"
               className="object-cover rounded-2xl"
             />
             <div className="absolute inset-0 flex flex-col justify-end items-center pb-4 bg-linear-to-t from-black/60 via-black/20 to-transparent">

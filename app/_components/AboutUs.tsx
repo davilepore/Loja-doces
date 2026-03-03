@@ -19,6 +19,7 @@ function AboutUs() {
                 alt="Simara Souza"
                 src="/mulher.jpg"
                 fill
+                sizes="100%"
                 className="object-cover"
               />
             </div>
