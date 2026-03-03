@@ -74,7 +74,7 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
                 key={doce.id}
                 className="w-full max-w-65 md:max-w-sm bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden flex flex-col transition-transform active:scale-[0.98]"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <div className="relative aspect-4/3 w-full overflow-hidden">
                   <Image
                     src={doce.imagemUrl}
                     alt={doce.nome}
@@ -114,7 +114,7 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
       {doceSelecionado && (
         <div className="fixed inset-0 bg-black/50 flex flex-col items-center justify-center z-20">
           <div className="bg-white p-6 rounded-xl w-80">
-            <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <div className="relative aspect-4/3 w-full overflow-hidden">
               <Image
                 src={doceSelecionado.imagemUrl}
                 alt={doceSelecionado.nome}

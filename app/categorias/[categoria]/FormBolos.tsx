@@ -1,7 +1,27 @@
 function FormBolos() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    await fetch("/api/carrinho", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        doceId: 1,
+        quantidade: 1,
+        configuracoes: {
+          massa: "chocolate",
+          recheio: "brigadeiro",
+          tamanho: "20cm",
+        },
+      }),
+    });
+
+    console.log("Enviado");
+  }
+
   return (
     <div>
-      <form action="POST">
+      <form onSubmit={handleSubmit} action="POST">
         <select className="border rounded-md p-1" name="massa" id="massa">
           <option value="amanteigada">Amanteigada</option>
           <option value="chocolate">Chocolate</option>
@@ -26,7 +46,10 @@ function FormBolos() {
           <option value="">30cm - 60 fatias</option>
         </select>
 
-        <button className="w-full bg-black text-white py-2 rounded-lg">
+        <button
+          type="submit"
+          className="w-full bg-black text-white py-2 rounded-lg"
+        >
           Adicionar
         </button>
       </form>
