@@ -16,7 +16,7 @@ export default function Navbar() {
           {/* ESQUERDA */}
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-pink-400">
+            <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#643938]">
               <Image
                 src="/logo.jpeg"
                 alt="Logo"

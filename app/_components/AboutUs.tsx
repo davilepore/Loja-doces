@@ -4,9 +4,10 @@ function AboutUs() {
   return (
     <div className="mt-20 px-4">
       <div className="max-w-6xl mx-auto space-y-8">
-        <h2 className="text-center text-3xl md:text-4xl font-semibold">
-          Sobre Nós
-        </h2>
+        <div className="text-center space-y-2">
+          <h2 className="text-4xl font-bold text-[#44201F] mt-10">Sobre Nós</h2>
+          <div className="w-20 h-1 bg-[#7dd0c2] mx-auto rounded-full"></div>
+        </div>
 
         <div className="flex items-stretch gap-4 border-2 p-4">
           <div className="w-[45%] space-y-3">
