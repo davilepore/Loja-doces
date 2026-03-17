@@ -1,17 +1,23 @@
-function FormBolos() {
-  async function handleSubmit(e: React.FormEvent) {
+type Props = {
+  doceId: number;
+};
+
+function FormBolos({ doceId }: Props) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
 
     await fetch("/api/carrinho", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        doceId: 1,
+        doceId,
         quantidade: 1,
         configuracoes: {
-          massa: "chocolate",
-          recheio: "brigadeiro",
-          tamanho: "20cm",
+          massa: formData.get("massa"),
+          recheio: formData.get("recheio"),
+          tamanho: formData.get("tamanho"),
         },
       }),
     });
@@ -21,7 +27,7 @@ function FormBolos() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} action="POST">
+      <form onSubmit={handleSubmit}>
         <select className="border rounded-md p-1" name="massa" id="massa">
           <option value="amanteigada">Amanteigada</option>
           <option value="chocolate">Chocolate</option>

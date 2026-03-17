@@ -13,11 +13,11 @@ interface Props {
 export default async function CategoriaPage({ params }: Props) {
   const { categoria } = await params;
 
-  if (!categoria) {
+  const categoriaUrl = categoria.toUpperCase();
+
+  if (!(categoriaUrl in Categoria)) {
     notFound();
   }
-
-  const categoriaUrl = categoria.toUpperCase();
 
   const doces = await prisma.doce.findMany({
     where: {

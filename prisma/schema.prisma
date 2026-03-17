@@ -58,8 +58,8 @@ model ItemCarrinho {
   id           Int      @id @default(autoincrement())
   carrinho     Carrinho @relation(fields: [carrinhoId], references: [id])
   carrinhoId   Int
-  doce     Doce  @relation(fields: [doceId], references: [id])
   doceId    Int
+  doce     Doce  @relation(fields: [doceId], references: [id])
   quantidade   Int
   configuracoes Json   
 }

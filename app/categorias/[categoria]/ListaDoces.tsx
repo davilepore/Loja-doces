@@ -6,6 +6,7 @@ import { useState } from "react";
 import FormBolos from "./FormBolos";
 import FormDocinhos from "./FormDocinhos";
 import FormSobremesas from "./FormSobremesas";
+import { ArrowLeft } from "lucide-react";
 
 type Doce = {
   id: number;
@@ -36,14 +37,14 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
     setDoceSelecionado(doce);
   };
 
-  let conteudo;
+  let conteudo = null;
 
   if (doceSelecionado?.categoria === "BOLOS") {
-    conteudo = <FormBolos />;
+    conteudo = <FormBolos doceId={doceSelecionado!.id} />;
   } else if (doceSelecionado?.categoria === "DOCINHOS") {
-    conteudo = <FormDocinhos />;
-  } else {
-    conteudo = <FormSobremesas />;
+    conteudo = <FormDocinhos doceId={doceSelecionado!.id} />;
+  } else if (doceSelecionado?.categoria === "SOBREMESAS") {
+    conteudo = <FormSobremesas doceId={doceSelecionado.id} />;
   }
 
   return (
@@ -114,6 +115,9 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
       {doceSelecionado && (
         <div className="fixed inset-0 bg-black/50 flex flex-col items-center justify-center z-20">
           <div className="bg-white p-6 rounded-xl w-80">
+            <button onClick={() => setDoceSelecionado(null)}>
+              <ArrowLeft />
+            </button>
             <div className="relative aspect-4/3 w-full overflow-hidden">
               <Image
                 src={doceSelecionado.imagemUrl}
