@@ -3,6 +3,7 @@ import { Frown, Minus, Plus, Trash2, X, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { getSessionId } from "@/lib/cartSession"; // 1. Importe sua função de sessão
 
 type ItemCarrinho = {
   id: number;
@@ -24,10 +25,18 @@ function Cart({ close }: Props) {
 
   useEffect(() => {
     async function loadCart() {
-      const res = await fetch("/api/carrinho");
-      const data = await res.json();
-      setItens(data?.itens || []);
-      setLoading(false);
+      const sessionId = getSessionId();
+
+      try {
+        const res = await fetch(`/api/carrinho?sessionId=${sessionId}`);
+        const data = await res.json();
+
+        setItens(data?.itens || []);
+      } catch (error) {
+        console.error("Erro ao carregar carrinho:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     loadCart();
   }, []);
@@ -135,7 +144,7 @@ function Cart({ close }: Props) {
                 Total de itens:
               </span>
               <span className="text-xl font-black text-[#44201F]">
-                {itens.length}
+                {itens.reduce((acc, item) => acc + item.quantidade, 0)}
               </span>
             </div>
 
@@ -143,9 +152,6 @@ function Cart({ close }: Props) {
               Finalizar pelo WhatsApp
               <FaWhatsapp size={20} />
             </button>
-            <p className="text-[10px] text-center text-[#44201F]/40 mt-4 uppercase tracking-widest">
-              Doces MaBecky • Qualidade Artesanal
-            </p>
           </div>
         )}
       </div>
