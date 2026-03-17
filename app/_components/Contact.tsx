@@ -13,7 +13,7 @@ function Contact() {
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl shadow-[#44201f]/5 border border-[#44201f]/10">
         <Form />
       </div>
-      {/* Divisor Estilizado */}
+
       <div className="flex items-center justify-center gap-4 max-w-lg mx-auto">
         <div className="h-px bg-[#44201f]/20 flex-1"></div>
         <div className="w-2 h-2 rounded-full bg-[#7dd0c2]"></div>
