@@ -2,19 +2,20 @@
 
 import { getSessionId } from "@/lib/cartSession";
 
-// Definimos a interface para acabar com o erro de "any"
-export interface BoloConfigs {
-  massa: string;
-  recheio: string;
-  tamanho: string;
+export interface CartConfig {
+  massa?: string;
+  recheio?: string;
+  tamanho?: string;
 }
 
 export async function addToCart(
   doceId: number,
   quantidade: number,
-  configuracoes: BoloConfigs,
+  configuracoes: CartConfig = {},
 ) {
   const sessionId = getSessionId();
+
+  if (!sessionId) throw new Error("Session ID não encontrado");
 
   return await fetch("/api/carrinho", {
     method: "POST",

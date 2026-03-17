@@ -1,4 +1,7 @@
+"use client";
+
 import { useState } from "react";
+import { addToCart } from "@/lib/actions";
 
 type Props = {
   doceId: number;
@@ -6,56 +9,70 @@ type Props = {
 
 function FormDocinhos({ doceId }: Props) {
   const [mensagem, setMensagem] = useState("");
-  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  const [carregando, setCarregando] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setCarregando(true);
 
     const formData = new FormData(e.currentTarget);
+    const quantidade = Number(formData.get("quantidade"));
 
-    const res = await fetch("/api/carrinho", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        doceId,
-        quantidade: Number(formData.get("quantidade")),
-        configuracoes: {},
-      }),
-    });
+    try {
+      const res = await addToCart(doceId, quantidade, {});
 
-    if (res.ok) {
-      setMensagem("Adicionado ao carrinho!");
-    } else {
-      setMensagem("Erro ao adicionar ao carrinho");
+      if (res.ok) {
+        setMensagem("Docinho adicionado!");
+      } else {
+        setMensagem("Erro ao adicionar docinho");
+      }
+    } catch (error) {
+      setMensagem("Erro de conexão");
+    } finally {
+      setCarregando(false);
+      setTimeout(() => setMensagem(""), 2000);
     }
-
-    setTimeout(() => setMensagem(""), 2000);
   }
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="quantidade">Quantidade:</label>
-          <input
-            type="number"
-            id="quantidade"
-            name="quantidade"
-            min="1"
-            max="100"
-            defaultValue="1"
-            step="1"
-          />
+      <div className="w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="quantidade-docinho"
+              className="text-sm font-medium text-gray-700"
+            >
+              Quantidade:
+            </label>
+            <input
+              type="number"
+              id="quantidade-docinho"
+              name="quantidade"
+              min="1"
+              max="100"
+              defaultValue="1"
+              className="border rounded-lg p-2 outline-none focus:ring-2 focus:ring-black/10 transition-all"
+            />
+          </div>
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded-lg"
+            disabled={carregando}
+            className={`w-full bg-black text-white py-2 rounded-lg font-medium transition-all ${
+              carregando ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-800"
+            }`}
           >
-            Adicionar
+            {carregando ? "Adicionando..." : "Adicionar Docinho"}
           </button>
         </form>
       </div>
+
       {mensagem && (
         <div
-          className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${mensagem ? "bg-green-500" : "bg-red-500"} text-white px-6 py-3 rounded-lg shadow-lg`}
+          className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 rounded-lg shadow-2xl z-50 text-white font-bold animate-in fade-in zoom-in duration-300 ${
+            mensagem.includes("Erro") ? "bg-red-500" : "bg-green-600"
+          }`}
         >
           {mensagem}
         </div>
