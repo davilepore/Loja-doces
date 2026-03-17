@@ -26,3 +26,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Erro no servidor" }, { status: 500 });
   }
 }
+
+export async function GET() {
+  const carrinho = await prisma.carrinho.findUnique({
+    where: {
+      sessionId: "abc123",
+    },
+    include: {
+      itens: {
+        include: {
+          doce: true,
+        },
+      },
+    },
+  });
+
+  return NextResponse.json(carrinho);
+}
