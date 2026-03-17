@@ -7,7 +7,7 @@ import Footer from "./_components/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <div className="z-10">
       <HeroCarousel />
 
       <SweetTypes />
