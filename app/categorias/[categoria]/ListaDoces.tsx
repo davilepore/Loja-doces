@@ -50,7 +50,6 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
 
   return (
     <div className="bg-[#fdfaf8] min-h-screen">
-      {/* Banner da Categoria */}
       <div className="relative w-full h-75 md:h-100">
         <div
           className="absolute top-4 left-4 z-10 bg-[#44201F]/80 p-2 rounded-full cursor-pointer"
@@ -73,14 +72,12 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
         </div>
       </div>
 
-      {/* Descrição */}
       <div className="max-w-3xl mx-auto p-10 text-center">
         <p className="text-lg md:text-xl text-[#44201F]/80 italic leading-relaxed">
           &quot;{categoriaData.descricao}&quot;
         </p>
       </div>
 
-      {/* Grid de Doces - Anti-vazamento Desktop */}
       <div className="container mx-auto px-6 py-6 max-w-7xl">
         <div className="flex flex-wrap justify-center gap-8">
           {doces.map((doce) => (
@@ -88,7 +85,6 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
               key={doce.id}
               className="group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-2rem)] max-w-[320px] bg-white rounded-3xl shadow-lg shadow-[#44201f]/5 border border-[#44201f]/5 overflow-hidden flex flex-col transition-all hover:-translate-y-1 hover:shadow-xl"
             >
-              {/* Imagem do Produto */}
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image
                   src={doce.imagemUrl}
@@ -102,7 +98,6 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
                 </div>
               </div>
 
-              {/* Detalhes */}
               <div className="p-5 flex flex-col items-center text-center">
                 <h2 className="text-xl font-bold text-[#44201F] leading-tight mb-1 capitalize">
                   {doce.nome.toLowerCase()}
@@ -124,7 +119,6 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
         </div>
       </div>
 
-      {/* Modal Estilizado */}
       {doceSelecionado && (
         <div className="fixed inset-0 bg-[#44201F]/80 backdrop-blur-sm flex items-center justify-center z-60 p-4">
           <div className="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">

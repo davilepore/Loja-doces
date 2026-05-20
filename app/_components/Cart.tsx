@@ -3,7 +3,8 @@ import { Frown, Minus, Plus, Trash2, X, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { getSessionId } from "@/lib/cartSession"; // 1. Importe sua função de sessão
+import { getSessionId } from "@/lib/cartSession";
+import { useCarrinho } from "@/app/contexts/CarrinhoContext";
 
 type ItemCarrinho = {
   id: number;
@@ -28,6 +29,7 @@ type Props = {
 function Cart({ close }: Props) {
   const [itens, setItens] = useState<ItemCarrinho[]>([]);
   const [loading, setLoading] = useState(true);
+  const { refetchCarrinho } = useCarrinho();
 
   useEffect(() => {
     async function loadCart() {
@@ -47,14 +49,36 @@ function Cart({ close }: Props) {
     loadCart();
   }, []);
 
-  const message = `Olá, gostaria de finalizar meu pedido:\n\n${itens
-    .map(
-      (item) =>
-        `- ${item.doce.nome} x ${item.quantidade}\n ${item.doce.categoria == "BOLOS" ? `Massa: ${item.configuracoes.massa}\n` : ""} ${item.configuracoes.recheio ? `Recheio: ${item.configuracoes.recheio}\n` : ""} ${item.configuracoes.tamanho ? `Cobertura: ${item.configuracoes.tamanho}\n` : ""}`,
-    )
-    .join("\n")}
+  const message = itens
+    .map((item, index) => {
+      const linhas = [
+        `${index + 1}. ${item.doce.nome.toUpperCase()} x${item.quantidade}`,
+        item.doce.categoria === "BOLOS" && item.configuracoes.massa
+          ? `   🍰 Massa: ${item.configuracoes.massa}`
+          : null,
+        item.configuracoes.recheio
+          ? `   🍫 Recheio: ${item.configuracoes.recheio}`
+          : null,
+        item.configuracoes.tamanho
+          ? `   ✨ Cobertura: ${item.configuracoes.tamanho}`
+          : null,
+      ].filter(Boolean);
 
-Total de itens: ${itens.reduce((acc, item) => acc + item.quantidade, 0)}`;
+      return linhas.join("\n");
+    })
+    .join("\n\n");
+
+  const totalItens = itens.reduce((acc, item) => acc + item.quantidade, 0);
+
+  const mensagemFinal = [
+    "Olá! 🍬 Gostaria de fazer um pedido:",
+    "━━━━━━━━━━━━━━━━━━━━",
+    message,
+    "━━━━━━━━━━━━━━━━━━━━",
+    `🛍️ Total: ${totalItens} ${totalItens === 1 ? "item" : "itens"}`,
+    "",
+    "Poderia me confirmar a disponibilidade? 😊",
+  ].join("\n");
 
   const handleSubmit = (message: string) => {
     const url = `https://wa.me/+5521972505271?text=${encodeURIComponent(message)}`;
@@ -62,26 +86,48 @@ Total de itens: ${itens.reduce((acc, item) => acc + item.quantidade, 0)}`;
     window.open(url, "_blank");
   };
 
-  const aumentarQuantidade = (id: number) => {
+  const aumentarQuantidade = async (id: number) => {
+    const item = itens.find((i) => i.id === id)!;
+    const novaQtd = item.quantidade + 1;
+
     setItens((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item,
-      ),
+      prev.map((i) => (i.id === id ? { ...i, quantidade: novaQtd } : i)),
     );
+
+    await fetch(`/api/carrinho/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantidade: novaQtd }),
+    });
+
+    refetchCarrinho();
   };
 
-  const diminuirQuantidade = (id: number) => {
+  const diminuirQuantidade = async (id: number) => {
+    const item = itens.find((i) => i.id === id)!;
+    const novaQtd = item.quantidade - 1;
+
     setItens((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item,
-        )
-        .filter((item) => item.quantidade > 0),
+      novaQtd <= 0
+        ? prev.filter((i) => i.id !== id)
+        : prev.map((i) => (i.id === id ? { ...i, quantidade: novaQtd } : i)),
     );
+
+    await fetch(`/api/carrinho/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantidade: novaQtd }),
+    });
+
+    refetchCarrinho();
   };
 
-  const removerItem = (id: number) => {
-    setItens((prev) => prev.filter((item) => item.id !== id));
+  const removerItem = async (id: number) => {
+    setItens((prev) => prev.filter((i) => i.id !== id));
+
+    await fetch(`/api/carrinho/${id}`, { method: "DELETE" });
+
+    refetchCarrinho();
   };
 
   if (loading) {
@@ -201,7 +247,7 @@ Total de itens: ${itens.reduce((acc, item) => acc + item.quantidade, 0)}`;
             </div>
 
             <button
-              onClick={() => handleSubmit(message)}
+              onClick={() => handleSubmit(mensagemFinal)}
               className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 rounded-2xl font-bold shadow-lg shadow-green-200 transition-all active:scale-95"
             >
               Finalizar pelo WhatsApp

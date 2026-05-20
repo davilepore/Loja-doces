@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
+import { CarrinhoProvider } from "./contexts/CarrinhoContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,10 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.className}`}>
-        <Navbar />
-        {children}
+    <html>
+      <body>
+        <CarrinhoProvider>
+          <Navbar />
+          {children}
+        </CarrinhoProvider>
       </body>
     </html>
   );

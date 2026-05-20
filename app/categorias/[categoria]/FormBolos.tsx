@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { addToCart, CartConfig } from "@/lib/actions";
+import { useCarrinho } from "@/app/contexts/CarrinhoContext";
 
 type Props = {
   doceId: number;
@@ -10,6 +11,7 @@ type Props = {
 function FormBolos({ doceId }: Props) {
   const [mensagem, setMensagem] = useState("");
   const [carregando, setCarregando] = useState(false);
+  const { refetchCarrinho } = useCarrinho();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,6 +27,7 @@ function FormBolos({ doceId }: Props) {
 
     try {
       const res = await addToCart(doceId, 1, configs);
+      refetchCarrinho();
 
       if (res.ok) {
         setMensagem("Bolo adicionado ao carrinho!");

@@ -4,8 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { Search, Menu, X, ShoppingCart } from "lucide-react";
 import Cart from "./Cart";
+import { useCarrinho } from "../contexts/CarrinhoContext";
 
 export default function Navbar() {
+  const { totalItens } = useCarrinho();
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -64,9 +66,11 @@ export default function Navbar() {
                   size={24}
                   className="text-[#44201F] group-hover:text-[#7dd0c2]"
                 />
-                <span className="absolute top-0 right-0 bg-[#7dd0c2] text-[#44201F] text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
-                  0
-                </span>
+                {totalItens > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-[#7dd0c2] text-[#44201F] text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center">
+                    {totalItens > 99 ? "99+" : totalItens}
+                  </span>
+                )}
               </button>
 
               <button
