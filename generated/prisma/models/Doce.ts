@@ -469,9 +469,9 @@ export type DoceSumOrderByAggregateInput = {
   preco?: Prisma.SortOrder
 }
 
-export type DoceScalarRelationFilter = {
-  is?: Prisma.DoceWhereInput
-  isNot?: Prisma.DoceWhereInput
+export type DoceNullableScalarRelationFilter = {
+  is?: Prisma.DoceWhereInput | null
+  isNot?: Prisma.DoceWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -516,10 +516,12 @@ export type DoceCreateNestedOneWithoutItensCarrinhoInput = {
   connect?: Prisma.DoceWhereUniqueInput
 }
 
-export type DoceUpdateOneRequiredWithoutItensCarrinhoNestedInput = {
+export type DoceUpdateOneWithoutItensCarrinhoNestedInput = {
   create?: Prisma.XOR<Prisma.DoceCreateWithoutItensCarrinhoInput, Prisma.DoceUncheckedCreateWithoutItensCarrinhoInput>
   connectOrCreate?: Prisma.DoceCreateOrConnectWithoutItensCarrinhoInput
   upsert?: Prisma.DoceUpsertWithoutItensCarrinhoInput
+  disconnect?: Prisma.DoceWhereInput | boolean
+  delete?: Prisma.DoceWhereInput | boolean
   connect?: Prisma.DoceWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.DoceUpdateToOneWithWhereWithoutItensCarrinhoInput, Prisma.DoceUpdateWithoutItensCarrinhoInput>, Prisma.DoceUncheckedUpdateWithoutItensCarrinhoInput>
 }

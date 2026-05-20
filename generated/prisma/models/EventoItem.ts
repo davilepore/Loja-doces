@@ -29,12 +29,14 @@ export type AggregateEventoItem = {
 export type EventoItemAvgAggregateOutputType = {
   id: number | null
   eventoId: number | null
+  quantidade: number | null
   preco: number | null
 }
 
 export type EventoItemSumAggregateOutputType = {
   id: number | null
   eventoId: number | null
+  quantidade: number | null
   preco: number | null
 }
 
@@ -42,6 +44,7 @@ export type EventoItemMinAggregateOutputType = {
   id: number | null
   eventoId: number | null
   nome: string | null
+  quantidade: number | null
   descricao: string | null
   preco: number | null
   imagemUrl: string | null
@@ -51,6 +54,7 @@ export type EventoItemMaxAggregateOutputType = {
   id: number | null
   eventoId: number | null
   nome: string | null
+  quantidade: number | null
   descricao: string | null
   preco: number | null
   imagemUrl: string | null
@@ -60,6 +64,7 @@ export type EventoItemCountAggregateOutputType = {
   id: number
   eventoId: number
   nome: number
+  quantidade: number
   descricao: number
   preco: number
   imagemUrl: number
@@ -70,12 +75,14 @@ export type EventoItemCountAggregateOutputType = {
 export type EventoItemAvgAggregateInputType = {
   id?: true
   eventoId?: true
+  quantidade?: true
   preco?: true
 }
 
 export type EventoItemSumAggregateInputType = {
   id?: true
   eventoId?: true
+  quantidade?: true
   preco?: true
 }
 
@@ -83,6 +90,7 @@ export type EventoItemMinAggregateInputType = {
   id?: true
   eventoId?: true
   nome?: true
+  quantidade?: true
   descricao?: true
   preco?: true
   imagemUrl?: true
@@ -92,6 +100,7 @@ export type EventoItemMaxAggregateInputType = {
   id?: true
   eventoId?: true
   nome?: true
+  quantidade?: true
   descricao?: true
   preco?: true
   imagemUrl?: true
@@ -101,6 +110,7 @@ export type EventoItemCountAggregateInputType = {
   id?: true
   eventoId?: true
   nome?: true
+  quantidade?: true
   descricao?: true
   preco?: true
   imagemUrl?: true
@@ -197,6 +207,7 @@ export type EventoItemGroupByOutputType = {
   id: number
   eventoId: number
   nome: string
+  quantidade: number
   descricao: string | null
   preco: number | null
   imagemUrl: string | null
@@ -229,20 +240,24 @@ export type EventoItemWhereInput = {
   id?: Prisma.IntFilter<"EventoItem"> | number
   eventoId?: Prisma.IntFilter<"EventoItem"> | number
   nome?: Prisma.StringFilter<"EventoItem"> | string
+  quantidade?: Prisma.IntFilter<"EventoItem"> | number
   descricao?: Prisma.StringNullableFilter<"EventoItem"> | string | null
   preco?: Prisma.FloatNullableFilter<"EventoItem"> | number | null
   imagemUrl?: Prisma.StringNullableFilter<"EventoItem"> | string | null
   evento?: Prisma.XOR<Prisma.EventoScalarRelationFilter, Prisma.EventoWhereInput>
+  itemCarrinhos?: Prisma.ItemCarrinhoListRelationFilter
 }
 
 export type EventoItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   preco?: Prisma.SortOrderInput | Prisma.SortOrder
   imagemUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   evento?: Prisma.EventoOrderByWithRelationInput
+  itemCarrinhos?: Prisma.ItemCarrinhoOrderByRelationAggregateInput
 }
 
 export type EventoItemWhereUniqueInput = Prisma.AtLeast<{
@@ -252,16 +267,19 @@ export type EventoItemWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EventoItemWhereInput | Prisma.EventoItemWhereInput[]
   eventoId?: Prisma.IntFilter<"EventoItem"> | number
   nome?: Prisma.StringFilter<"EventoItem"> | string
+  quantidade?: Prisma.IntFilter<"EventoItem"> | number
   descricao?: Prisma.StringNullableFilter<"EventoItem"> | string | null
   preco?: Prisma.FloatNullableFilter<"EventoItem"> | number | null
   imagemUrl?: Prisma.StringNullableFilter<"EventoItem"> | string | null
   evento?: Prisma.XOR<Prisma.EventoScalarRelationFilter, Prisma.EventoWhereInput>
+  itemCarrinhos?: Prisma.ItemCarrinhoListRelationFilter
 }, "id">
 
 export type EventoItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   preco?: Prisma.SortOrderInput | Prisma.SortOrder
   imagemUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -279,6 +297,7 @@ export type EventoItemScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"EventoItem"> | number
   eventoId?: Prisma.IntWithAggregatesFilter<"EventoItem"> | number
   nome?: Prisma.StringWithAggregatesFilter<"EventoItem"> | string
+  quantidade?: Prisma.IntWithAggregatesFilter<"EventoItem"> | number
   descricao?: Prisma.StringNullableWithAggregatesFilter<"EventoItem"> | string | null
   preco?: Prisma.FloatNullableWithAggregatesFilter<"EventoItem"> | number | null
   imagemUrl?: Prisma.StringNullableWithAggregatesFilter<"EventoItem"> | string | null
@@ -286,42 +305,51 @@ export type EventoItemScalarWhereWithAggregatesInput = {
 
 export type EventoItemCreateInput = {
   nome: string
+  quantidade?: number
   descricao?: string | null
   preco?: number | null
   imagemUrl?: string | null
   evento: Prisma.EventoCreateNestedOneWithoutItensInput
+  itemCarrinhos?: Prisma.ItemCarrinhoCreateNestedManyWithoutEventoItemInput
 }
 
 export type EventoItemUncheckedCreateInput = {
   id?: number
   eventoId: number
   nome: string
+  quantidade?: number
   descricao?: string | null
   preco?: number | null
   imagemUrl?: string | null
+  itemCarrinhos?: Prisma.ItemCarrinhoUncheckedCreateNestedManyWithoutEventoItemInput
 }
 
 export type EventoItemUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   evento?: Prisma.EventoUpdateOneRequiredWithoutItensNestedInput
+  itemCarrinhos?: Prisma.ItemCarrinhoUpdateManyWithoutEventoItemNestedInput
 }
 
 export type EventoItemUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   eventoId?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  itemCarrinhos?: Prisma.ItemCarrinhoUncheckedUpdateManyWithoutEventoItemNestedInput
 }
 
 export type EventoItemCreateManyInput = {
   id?: number
   eventoId: number
   nome: string
+  quantidade?: number
   descricao?: string | null
   preco?: number | null
   imagemUrl?: string | null
@@ -329,6 +357,7 @@ export type EventoItemCreateManyInput = {
 
 export type EventoItemUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -338,9 +367,15 @@ export type EventoItemUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   eventoId?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EventoItemNullableScalarRelationFilter = {
+  is?: Prisma.EventoItemWhereInput | null
+  isNot?: Prisma.EventoItemWhereInput | null
 }
 
 export type EventoItemListRelationFilter = {
@@ -357,6 +392,7 @@ export type EventoItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
@@ -365,6 +401,7 @@ export type EventoItemCountOrderByAggregateInput = {
 export type EventoItemAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   preco?: Prisma.SortOrder
 }
 
@@ -372,6 +409,7 @@ export type EventoItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
@@ -381,6 +419,7 @@ export type EventoItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
@@ -389,7 +428,24 @@ export type EventoItemMinOrderByAggregateInput = {
 export type EventoItemSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   eventoId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   preco?: Prisma.SortOrder
+}
+
+export type EventoItemCreateNestedOneWithoutItemCarrinhosInput = {
+  create?: Prisma.XOR<Prisma.EventoItemCreateWithoutItemCarrinhosInput, Prisma.EventoItemUncheckedCreateWithoutItemCarrinhosInput>
+  connectOrCreate?: Prisma.EventoItemCreateOrConnectWithoutItemCarrinhosInput
+  connect?: Prisma.EventoItemWhereUniqueInput
+}
+
+export type EventoItemUpdateOneWithoutItemCarrinhosNestedInput = {
+  create?: Prisma.XOR<Prisma.EventoItemCreateWithoutItemCarrinhosInput, Prisma.EventoItemUncheckedCreateWithoutItemCarrinhosInput>
+  connectOrCreate?: Prisma.EventoItemCreateOrConnectWithoutItemCarrinhosInput
+  upsert?: Prisma.EventoItemUpsertWithoutItemCarrinhosInput
+  disconnect?: Prisma.EventoItemWhereInput | boolean
+  delete?: Prisma.EventoItemWhereInput | boolean
+  connect?: Prisma.EventoItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventoItemUpdateToOneWithWhereWithoutItemCarrinhosInput, Prisma.EventoItemUpdateWithoutItemCarrinhosInput>, Prisma.EventoItemUncheckedUpdateWithoutItemCarrinhosInput>
 }
 
 export type EventoItemCreateNestedManyWithoutEventoInput = {
@@ -442,19 +498,77 @@ export type NullableFloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type EventoItemCreateWithoutEventoInput = {
+export type EventoItemCreateWithoutItemCarrinhosInput = {
   nome: string
+  quantidade?: number
+  descricao?: string | null
+  preco?: number | null
+  imagemUrl?: string | null
+  evento: Prisma.EventoCreateNestedOneWithoutItensInput
+}
+
+export type EventoItemUncheckedCreateWithoutItemCarrinhosInput = {
+  id?: number
+  eventoId: number
+  nome: string
+  quantidade?: number
   descricao?: string | null
   preco?: number | null
   imagemUrl?: string | null
 }
 
-export type EventoItemUncheckedCreateWithoutEventoInput = {
-  id?: number
+export type EventoItemCreateOrConnectWithoutItemCarrinhosInput = {
+  where: Prisma.EventoItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventoItemCreateWithoutItemCarrinhosInput, Prisma.EventoItemUncheckedCreateWithoutItemCarrinhosInput>
+}
+
+export type EventoItemUpsertWithoutItemCarrinhosInput = {
+  update: Prisma.XOR<Prisma.EventoItemUpdateWithoutItemCarrinhosInput, Prisma.EventoItemUncheckedUpdateWithoutItemCarrinhosInput>
+  create: Prisma.XOR<Prisma.EventoItemCreateWithoutItemCarrinhosInput, Prisma.EventoItemUncheckedCreateWithoutItemCarrinhosInput>
+  where?: Prisma.EventoItemWhereInput
+}
+
+export type EventoItemUpdateToOneWithWhereWithoutItemCarrinhosInput = {
+  where?: Prisma.EventoItemWhereInput
+  data: Prisma.XOR<Prisma.EventoItemUpdateWithoutItemCarrinhosInput, Prisma.EventoItemUncheckedUpdateWithoutItemCarrinhosInput>
+}
+
+export type EventoItemUpdateWithoutItemCarrinhosInput = {
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  evento?: Prisma.EventoUpdateOneRequiredWithoutItensNestedInput
+}
+
+export type EventoItemUncheckedUpdateWithoutItemCarrinhosInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  eventoId?: Prisma.IntFieldUpdateOperationsInput | number
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EventoItemCreateWithoutEventoInput = {
   nome: string
+  quantidade?: number
   descricao?: string | null
   preco?: number | null
   imagemUrl?: string | null
+  itemCarrinhos?: Prisma.ItemCarrinhoCreateNestedManyWithoutEventoItemInput
+}
+
+export type EventoItemUncheckedCreateWithoutEventoInput = {
+  id?: number
+  nome: string
+  quantidade?: number
+  descricao?: string | null
+  preco?: number | null
+  imagemUrl?: string | null
+  itemCarrinhos?: Prisma.ItemCarrinhoUncheckedCreateNestedManyWithoutEventoItemInput
 }
 
 export type EventoItemCreateOrConnectWithoutEventoInput = {
@@ -490,6 +604,7 @@ export type EventoItemScalarWhereInput = {
   id?: Prisma.IntFilter<"EventoItem"> | number
   eventoId?: Prisma.IntFilter<"EventoItem"> | number
   nome?: Prisma.StringFilter<"EventoItem"> | string
+  quantidade?: Prisma.IntFilter<"EventoItem"> | number
   descricao?: Prisma.StringNullableFilter<"EventoItem"> | string | null
   preco?: Prisma.FloatNullableFilter<"EventoItem"> | number | null
   imagemUrl?: Prisma.StringNullableFilter<"EventoItem"> | string | null
@@ -498,6 +613,7 @@ export type EventoItemScalarWhereInput = {
 export type EventoItemCreateManyEventoInput = {
   id?: number
   nome: string
+  quantidade?: number
   descricao?: string | null
   preco?: number | null
   imagemUrl?: string | null
@@ -505,43 +621,81 @@ export type EventoItemCreateManyEventoInput = {
 
 export type EventoItemUpdateWithoutEventoInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  itemCarrinhos?: Prisma.ItemCarrinhoUpdateManyWithoutEventoItemNestedInput
 }
 
 export type EventoItemUncheckedUpdateWithoutEventoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  itemCarrinhos?: Prisma.ItemCarrinhoUncheckedUpdateManyWithoutEventoItemNestedInput
 }
 
 export type EventoItemUncheckedUpdateManyWithoutEventoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+
+/**
+ * Count Type EventoItemCountOutputType
+ */
+
+export type EventoItemCountOutputType = {
+  itemCarrinhos: number
+}
+
+export type EventoItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  itemCarrinhos?: boolean | EventoItemCountOutputTypeCountItemCarrinhosArgs
+}
+
+/**
+ * EventoItemCountOutputType without action
+ */
+export type EventoItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventoItemCountOutputType
+   */
+  select?: Prisma.EventoItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * EventoItemCountOutputType without action
+ */
+export type EventoItemCountOutputTypeCountItemCarrinhosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ItemCarrinhoWhereInput
+}
 
 
 export type EventoItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   eventoId?: boolean
   nome?: boolean
+  quantidade?: boolean
   descricao?: boolean
   preco?: boolean
   imagemUrl?: boolean
   evento?: boolean | Prisma.EventoDefaultArgs<ExtArgs>
+  itemCarrinhos?: boolean | Prisma.EventoItem$itemCarrinhosArgs<ExtArgs>
+  _count?: boolean | Prisma.EventoItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventoItem"]>
 
 export type EventoItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   eventoId?: boolean
   nome?: boolean
+  quantidade?: boolean
   descricao?: boolean
   preco?: boolean
   imagemUrl?: boolean
@@ -552,6 +706,7 @@ export type EventoItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   eventoId?: boolean
   nome?: boolean
+  quantidade?: boolean
   descricao?: boolean
   preco?: boolean
   imagemUrl?: boolean
@@ -562,14 +717,17 @@ export type EventoItemSelectScalar = {
   id?: boolean
   eventoId?: boolean
   nome?: boolean
+  quantidade?: boolean
   descricao?: boolean
   preco?: boolean
   imagemUrl?: boolean
 }
 
-export type EventoItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventoId" | "nome" | "descricao" | "preco" | "imagemUrl", ExtArgs["result"]["eventoItem"]>
+export type EventoItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventoId" | "nome" | "quantidade" | "descricao" | "preco" | "imagemUrl", ExtArgs["result"]["eventoItem"]>
 export type EventoItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   evento?: boolean | Prisma.EventoDefaultArgs<ExtArgs>
+  itemCarrinhos?: boolean | Prisma.EventoItem$itemCarrinhosArgs<ExtArgs>
+  _count?: boolean | Prisma.EventoItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventoItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   evento?: boolean | Prisma.EventoDefaultArgs<ExtArgs>
@@ -582,11 +740,13 @@ export type $EventoItemPayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "EventoItem"
   objects: {
     evento: Prisma.$EventoPayload<ExtArgs>
+    itemCarrinhos: Prisma.$ItemCarrinhoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     eventoId: number
     nome: string
+    quantidade: number
     descricao: string | null
     preco: number | null
     imagemUrl: string | null
@@ -985,6 +1145,7 @@ readonly fields: EventoItemFieldRefs;
 export interface Prisma__EventoItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   evento<T extends Prisma.EventoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventoDefaultArgs<ExtArgs>>): Prisma.Prisma__EventoClient<runtime.Types.Result.GetResult<Prisma.$EventoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  itemCarrinhos<T extends Prisma.EventoItem$itemCarrinhosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventoItem$itemCarrinhosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemCarrinhoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1017,6 +1178,7 @@ export interface EventoItemFieldRefs {
   readonly id: Prisma.FieldRef<"EventoItem", 'Int'>
   readonly eventoId: Prisma.FieldRef<"EventoItem", 'Int'>
   readonly nome: Prisma.FieldRef<"EventoItem", 'String'>
+  readonly quantidade: Prisma.FieldRef<"EventoItem", 'Int'>
   readonly descricao: Prisma.FieldRef<"EventoItem", 'String'>
   readonly preco: Prisma.FieldRef<"EventoItem", 'Float'>
   readonly imagemUrl: Prisma.FieldRef<"EventoItem", 'String'>
@@ -1413,6 +1575,30 @@ export type EventoItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many EventoItems to delete.
    */
   limit?: number
+}
+
+/**
+ * EventoItem.itemCarrinhos
+ */
+export type EventoItem$itemCarrinhosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItemCarrinho
+   */
+  select?: Prisma.ItemCarrinhoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ItemCarrinho
+   */
+  omit?: Prisma.ItemCarrinhoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItemCarrinhoInclude<ExtArgs> | null
+  where?: Prisma.ItemCarrinhoWhereInput
+  orderBy?: Prisma.ItemCarrinhoOrderByWithRelationInput | Prisma.ItemCarrinhoOrderByWithRelationInput[]
+  cursor?: Prisma.ItemCarrinhoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ItemCarrinhoScalarFieldEnum | Prisma.ItemCarrinhoScalarFieldEnum[]
 }
 
 /**

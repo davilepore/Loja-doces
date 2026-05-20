@@ -30,6 +30,7 @@ export type ItemCarrinhoAvgAggregateOutputType = {
   id: number | null
   carrinhoId: number | null
   doceId: number | null
+  eventoItemId: number | null
   quantidade: number | null
 }
 
@@ -37,6 +38,7 @@ export type ItemCarrinhoSumAggregateOutputType = {
   id: number | null
   carrinhoId: number | null
   doceId: number | null
+  eventoItemId: number | null
   quantidade: number | null
 }
 
@@ -44,6 +46,7 @@ export type ItemCarrinhoMinAggregateOutputType = {
   id: number | null
   carrinhoId: number | null
   doceId: number | null
+  eventoItemId: number | null
   quantidade: number | null
 }
 
@@ -51,6 +54,7 @@ export type ItemCarrinhoMaxAggregateOutputType = {
   id: number | null
   carrinhoId: number | null
   doceId: number | null
+  eventoItemId: number | null
   quantidade: number | null
 }
 
@@ -58,6 +62,7 @@ export type ItemCarrinhoCountAggregateOutputType = {
   id: number
   carrinhoId: number
   doceId: number
+  eventoItemId: number
   quantidade: number
   configuracoes: number
   _all: number
@@ -68,6 +73,7 @@ export type ItemCarrinhoAvgAggregateInputType = {
   id?: true
   carrinhoId?: true
   doceId?: true
+  eventoItemId?: true
   quantidade?: true
 }
 
@@ -75,6 +81,7 @@ export type ItemCarrinhoSumAggregateInputType = {
   id?: true
   carrinhoId?: true
   doceId?: true
+  eventoItemId?: true
   quantidade?: true
 }
 
@@ -82,6 +89,7 @@ export type ItemCarrinhoMinAggregateInputType = {
   id?: true
   carrinhoId?: true
   doceId?: true
+  eventoItemId?: true
   quantidade?: true
 }
 
@@ -89,6 +97,7 @@ export type ItemCarrinhoMaxAggregateInputType = {
   id?: true
   carrinhoId?: true
   doceId?: true
+  eventoItemId?: true
   quantidade?: true
 }
 
@@ -96,6 +105,7 @@ export type ItemCarrinhoCountAggregateInputType = {
   id?: true
   carrinhoId?: true
   doceId?: true
+  eventoItemId?: true
   quantidade?: true
   configuracoes?: true
   _all?: true
@@ -190,7 +200,8 @@ export type ItemCarrinhoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type ItemCarrinhoGroupByOutputType = {
   id: number
   carrinhoId: number
-  doceId: number
+  doceId: number | null
+  eventoItemId: number | null
   quantidade: number
   configuracoes: runtime.JsonValue
   _count: ItemCarrinhoCountAggregateOutputType | null
@@ -221,21 +232,25 @@ export type ItemCarrinhoWhereInput = {
   NOT?: Prisma.ItemCarrinhoWhereInput | Prisma.ItemCarrinhoWhereInput[]
   id?: Prisma.IntFilter<"ItemCarrinho"> | number
   carrinhoId?: Prisma.IntFilter<"ItemCarrinho"> | number
-  doceId?: Prisma.IntFilter<"ItemCarrinho"> | number
+  doceId?: Prisma.IntNullableFilter<"ItemCarrinho"> | number | null
+  eventoItemId?: Prisma.IntNullableFilter<"ItemCarrinho"> | number | null
   quantidade?: Prisma.IntFilter<"ItemCarrinho"> | number
   configuracoes?: Prisma.JsonFilter<"ItemCarrinho">
   carrinho?: Prisma.XOR<Prisma.CarrinhoScalarRelationFilter, Prisma.CarrinhoWhereInput>
-  doce?: Prisma.XOR<Prisma.DoceScalarRelationFilter, Prisma.DoceWhereInput>
+  doce?: Prisma.XOR<Prisma.DoceNullableScalarRelationFilter, Prisma.DoceWhereInput> | null
+  eventoItem?: Prisma.XOR<Prisma.EventoItemNullableScalarRelationFilter, Prisma.EventoItemWhereInput> | null
 }
 
 export type ItemCarrinhoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
-  doceId?: Prisma.SortOrder
+  doceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrderInput | Prisma.SortOrder
   quantidade?: Prisma.SortOrder
   configuracoes?: Prisma.SortOrder
   carrinho?: Prisma.CarrinhoOrderByWithRelationInput
   doce?: Prisma.DoceOrderByWithRelationInput
+  eventoItem?: Prisma.EventoItemOrderByWithRelationInput
 }
 
 export type ItemCarrinhoWhereUniqueInput = Prisma.AtLeast<{
@@ -244,17 +259,20 @@ export type ItemCarrinhoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ItemCarrinhoWhereInput[]
   NOT?: Prisma.ItemCarrinhoWhereInput | Prisma.ItemCarrinhoWhereInput[]
   carrinhoId?: Prisma.IntFilter<"ItemCarrinho"> | number
-  doceId?: Prisma.IntFilter<"ItemCarrinho"> | number
+  doceId?: Prisma.IntNullableFilter<"ItemCarrinho"> | number | null
+  eventoItemId?: Prisma.IntNullableFilter<"ItemCarrinho"> | number | null
   quantidade?: Prisma.IntFilter<"ItemCarrinho"> | number
   configuracoes?: Prisma.JsonFilter<"ItemCarrinho">
   carrinho?: Prisma.XOR<Prisma.CarrinhoScalarRelationFilter, Prisma.CarrinhoWhereInput>
-  doce?: Prisma.XOR<Prisma.DoceScalarRelationFilter, Prisma.DoceWhereInput>
+  doce?: Prisma.XOR<Prisma.DoceNullableScalarRelationFilter, Prisma.DoceWhereInput> | null
+  eventoItem?: Prisma.XOR<Prisma.EventoItemNullableScalarRelationFilter, Prisma.EventoItemWhereInput> | null
 }, "id">
 
 export type ItemCarrinhoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
-  doceId?: Prisma.SortOrder
+  doceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrderInput | Prisma.SortOrder
   quantidade?: Prisma.SortOrder
   configuracoes?: Prisma.SortOrder
   _count?: Prisma.ItemCarrinhoCountOrderByAggregateInput
@@ -270,7 +288,8 @@ export type ItemCarrinhoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ItemCarrinhoScalarWhereWithAggregatesInput | Prisma.ItemCarrinhoScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"ItemCarrinho"> | number
   carrinhoId?: Prisma.IntWithAggregatesFilter<"ItemCarrinho"> | number
-  doceId?: Prisma.IntWithAggregatesFilter<"ItemCarrinho"> | number
+  doceId?: Prisma.IntNullableWithAggregatesFilter<"ItemCarrinho"> | number | null
+  eventoItemId?: Prisma.IntNullableWithAggregatesFilter<"ItemCarrinho"> | number | null
   quantidade?: Prisma.IntWithAggregatesFilter<"ItemCarrinho"> | number
   configuracoes?: Prisma.JsonWithAggregatesFilter<"ItemCarrinho">
 }
@@ -279,13 +298,15 @@ export type ItemCarrinhoCreateInput = {
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
   carrinho: Prisma.CarrinhoCreateNestedOneWithoutItensInput
-  doce: Prisma.DoceCreateNestedOneWithoutItensCarrinhoInput
+  doce?: Prisma.DoceCreateNestedOneWithoutItensCarrinhoInput
+  eventoItem?: Prisma.EventoItemCreateNestedOneWithoutItemCarrinhosInput
 }
 
 export type ItemCarrinhoUncheckedCreateInput = {
   id?: number
   carrinhoId: number
-  doceId: number
+  doceId?: number | null
+  eventoItemId?: number | null
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -294,13 +315,15 @@ export type ItemCarrinhoUpdateInput = {
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   carrinho?: Prisma.CarrinhoUpdateOneRequiredWithoutItensNestedInput
-  doce?: Prisma.DoceUpdateOneRequiredWithoutItensCarrinhoNestedInput
+  doce?: Prisma.DoceUpdateOneWithoutItensCarrinhoNestedInput
+  eventoItem?: Prisma.EventoItemUpdateOneWithoutItemCarrinhosNestedInput
 }
 
 export type ItemCarrinhoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   carrinhoId?: Prisma.IntFieldUpdateOperationsInput | number
-  doceId?: Prisma.IntFieldUpdateOperationsInput | number
+  doceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  eventoItemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -308,7 +331,8 @@ export type ItemCarrinhoUncheckedUpdateInput = {
 export type ItemCarrinhoCreateManyInput = {
   id?: number
   carrinhoId: number
-  doceId: number
+  doceId?: number | null
+  eventoItemId?: number | null
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -321,7 +345,8 @@ export type ItemCarrinhoUpdateManyMutationInput = {
 export type ItemCarrinhoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   carrinhoId?: Prisma.IntFieldUpdateOperationsInput | number
-  doceId?: Prisma.IntFieldUpdateOperationsInput | number
+  doceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  eventoItemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -340,6 +365,7 @@ export type ItemCarrinhoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
   doceId?: Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrder
   quantidade?: Prisma.SortOrder
   configuracoes?: Prisma.SortOrder
 }
@@ -348,6 +374,7 @@ export type ItemCarrinhoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
   doceId?: Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrder
   quantidade?: Prisma.SortOrder
 }
 
@@ -355,6 +382,7 @@ export type ItemCarrinhoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
   doceId?: Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrder
   quantidade?: Prisma.SortOrder
 }
 
@@ -362,6 +390,7 @@ export type ItemCarrinhoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
   doceId?: Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrder
   quantidade?: Prisma.SortOrder
 }
 
@@ -369,6 +398,7 @@ export type ItemCarrinhoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   carrinhoId?: Prisma.SortOrder
   doceId?: Prisma.SortOrder
+  eventoItemId?: Prisma.SortOrder
   quantidade?: Prisma.SortOrder
 }
 
@@ -456,15 +486,67 @@ export type ItemCarrinhoUncheckedUpdateManyWithoutCarrinhoNestedInput = {
   deleteMany?: Prisma.ItemCarrinhoScalarWhereInput | Prisma.ItemCarrinhoScalarWhereInput[]
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type ItemCarrinhoCreateNestedManyWithoutEventoItemInput = {
+  create?: Prisma.XOR<Prisma.ItemCarrinhoCreateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput> | Prisma.ItemCarrinhoCreateWithoutEventoItemInput[] | Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput[]
+  connectOrCreate?: Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput | Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput[]
+  createMany?: Prisma.ItemCarrinhoCreateManyEventoItemInputEnvelope
+  connect?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+}
+
+export type ItemCarrinhoUncheckedCreateNestedManyWithoutEventoItemInput = {
+  create?: Prisma.XOR<Prisma.ItemCarrinhoCreateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput> | Prisma.ItemCarrinhoCreateWithoutEventoItemInput[] | Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput[]
+  connectOrCreate?: Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput | Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput[]
+  createMany?: Prisma.ItemCarrinhoCreateManyEventoItemInputEnvelope
+  connect?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+}
+
+export type ItemCarrinhoUpdateManyWithoutEventoItemNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCarrinhoCreateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput> | Prisma.ItemCarrinhoCreateWithoutEventoItemInput[] | Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput[]
+  connectOrCreate?: Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput | Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput[]
+  upsert?: Prisma.ItemCarrinhoUpsertWithWhereUniqueWithoutEventoItemInput | Prisma.ItemCarrinhoUpsertWithWhereUniqueWithoutEventoItemInput[]
+  createMany?: Prisma.ItemCarrinhoCreateManyEventoItemInputEnvelope
+  set?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  disconnect?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  delete?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  connect?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  update?: Prisma.ItemCarrinhoUpdateWithWhereUniqueWithoutEventoItemInput | Prisma.ItemCarrinhoUpdateWithWhereUniqueWithoutEventoItemInput[]
+  updateMany?: Prisma.ItemCarrinhoUpdateManyWithWhereWithoutEventoItemInput | Prisma.ItemCarrinhoUpdateManyWithWhereWithoutEventoItemInput[]
+  deleteMany?: Prisma.ItemCarrinhoScalarWhereInput | Prisma.ItemCarrinhoScalarWhereInput[]
+}
+
+export type ItemCarrinhoUncheckedUpdateManyWithoutEventoItemNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCarrinhoCreateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput> | Prisma.ItemCarrinhoCreateWithoutEventoItemInput[] | Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput[]
+  connectOrCreate?: Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput | Prisma.ItemCarrinhoCreateOrConnectWithoutEventoItemInput[]
+  upsert?: Prisma.ItemCarrinhoUpsertWithWhereUniqueWithoutEventoItemInput | Prisma.ItemCarrinhoUpsertWithWhereUniqueWithoutEventoItemInput[]
+  createMany?: Prisma.ItemCarrinhoCreateManyEventoItemInputEnvelope
+  set?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  disconnect?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  delete?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  connect?: Prisma.ItemCarrinhoWhereUniqueInput | Prisma.ItemCarrinhoWhereUniqueInput[]
+  update?: Prisma.ItemCarrinhoUpdateWithWhereUniqueWithoutEventoItemInput | Prisma.ItemCarrinhoUpdateWithWhereUniqueWithoutEventoItemInput[]
+  updateMany?: Prisma.ItemCarrinhoUpdateManyWithWhereWithoutEventoItemInput | Prisma.ItemCarrinhoUpdateManyWithWhereWithoutEventoItemInput[]
+  deleteMany?: Prisma.ItemCarrinhoScalarWhereInput | Prisma.ItemCarrinhoScalarWhereInput[]
+}
+
 export type ItemCarrinhoCreateWithoutDoceInput = {
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
   carrinho: Prisma.CarrinhoCreateNestedOneWithoutItensInput
+  eventoItem?: Prisma.EventoItemCreateNestedOneWithoutItemCarrinhosInput
 }
 
 export type ItemCarrinhoUncheckedCreateWithoutDoceInput = {
   id?: number
   carrinhoId: number
+  eventoItemId?: number | null
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -501,7 +583,8 @@ export type ItemCarrinhoScalarWhereInput = {
   NOT?: Prisma.ItemCarrinhoScalarWhereInput | Prisma.ItemCarrinhoScalarWhereInput[]
   id?: Prisma.IntFilter<"ItemCarrinho"> | number
   carrinhoId?: Prisma.IntFilter<"ItemCarrinho"> | number
-  doceId?: Prisma.IntFilter<"ItemCarrinho"> | number
+  doceId?: Prisma.IntNullableFilter<"ItemCarrinho"> | number | null
+  eventoItemId?: Prisma.IntNullableFilter<"ItemCarrinho"> | number | null
   quantidade?: Prisma.IntFilter<"ItemCarrinho"> | number
   configuracoes?: Prisma.JsonFilter<"ItemCarrinho">
 }
@@ -509,12 +592,14 @@ export type ItemCarrinhoScalarWhereInput = {
 export type ItemCarrinhoCreateWithoutCarrinhoInput = {
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  doce: Prisma.DoceCreateNestedOneWithoutItensCarrinhoInput
+  doce?: Prisma.DoceCreateNestedOneWithoutItensCarrinhoInput
+  eventoItem?: Prisma.EventoItemCreateNestedOneWithoutItemCarrinhosInput
 }
 
 export type ItemCarrinhoUncheckedCreateWithoutCarrinhoInput = {
   id?: number
-  doceId: number
+  doceId?: number | null
+  eventoItemId?: number | null
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -545,9 +630,51 @@ export type ItemCarrinhoUpdateManyWithWhereWithoutCarrinhoInput = {
   data: Prisma.XOR<Prisma.ItemCarrinhoUpdateManyMutationInput, Prisma.ItemCarrinhoUncheckedUpdateManyWithoutCarrinhoInput>
 }
 
+export type ItemCarrinhoCreateWithoutEventoItemInput = {
+  quantidade: number
+  configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  carrinho: Prisma.CarrinhoCreateNestedOneWithoutItensInput
+  doce?: Prisma.DoceCreateNestedOneWithoutItensCarrinhoInput
+}
+
+export type ItemCarrinhoUncheckedCreateWithoutEventoItemInput = {
+  id?: number
+  carrinhoId: number
+  doceId?: number | null
+  quantidade: number
+  configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ItemCarrinhoCreateOrConnectWithoutEventoItemInput = {
+  where: Prisma.ItemCarrinhoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItemCarrinhoCreateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput>
+}
+
+export type ItemCarrinhoCreateManyEventoItemInputEnvelope = {
+  data: Prisma.ItemCarrinhoCreateManyEventoItemInput | Prisma.ItemCarrinhoCreateManyEventoItemInput[]
+  skipDuplicates?: boolean
+}
+
+export type ItemCarrinhoUpsertWithWhereUniqueWithoutEventoItemInput = {
+  where: Prisma.ItemCarrinhoWhereUniqueInput
+  update: Prisma.XOR<Prisma.ItemCarrinhoUpdateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedUpdateWithoutEventoItemInput>
+  create: Prisma.XOR<Prisma.ItemCarrinhoCreateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedCreateWithoutEventoItemInput>
+}
+
+export type ItemCarrinhoUpdateWithWhereUniqueWithoutEventoItemInput = {
+  where: Prisma.ItemCarrinhoWhereUniqueInput
+  data: Prisma.XOR<Prisma.ItemCarrinhoUpdateWithoutEventoItemInput, Prisma.ItemCarrinhoUncheckedUpdateWithoutEventoItemInput>
+}
+
+export type ItemCarrinhoUpdateManyWithWhereWithoutEventoItemInput = {
+  where: Prisma.ItemCarrinhoScalarWhereInput
+  data: Prisma.XOR<Prisma.ItemCarrinhoUpdateManyMutationInput, Prisma.ItemCarrinhoUncheckedUpdateManyWithoutEventoItemInput>
+}
+
 export type ItemCarrinhoCreateManyDoceInput = {
   id?: number
   carrinhoId: number
+  eventoItemId?: number | null
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -556,11 +683,13 @@ export type ItemCarrinhoUpdateWithoutDoceInput = {
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   carrinho?: Prisma.CarrinhoUpdateOneRequiredWithoutItensNestedInput
+  eventoItem?: Prisma.EventoItemUpdateOneWithoutItemCarrinhosNestedInput
 }
 
 export type ItemCarrinhoUncheckedUpdateWithoutDoceInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   carrinhoId?: Prisma.IntFieldUpdateOperationsInput | number
+  eventoItemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -568,13 +697,15 @@ export type ItemCarrinhoUncheckedUpdateWithoutDoceInput = {
 export type ItemCarrinhoUncheckedUpdateManyWithoutDoceInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   carrinhoId?: Prisma.IntFieldUpdateOperationsInput | number
+  eventoItemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type ItemCarrinhoCreateManyCarrinhoInput = {
   id?: number
-  doceId: number
+  doceId?: number | null
+  eventoItemId?: number | null
   quantidade: number
   configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -582,19 +713,53 @@ export type ItemCarrinhoCreateManyCarrinhoInput = {
 export type ItemCarrinhoUpdateWithoutCarrinhoInput = {
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  doce?: Prisma.DoceUpdateOneRequiredWithoutItensCarrinhoNestedInput
+  doce?: Prisma.DoceUpdateOneWithoutItensCarrinhoNestedInput
+  eventoItem?: Prisma.EventoItemUpdateOneWithoutItemCarrinhosNestedInput
 }
 
 export type ItemCarrinhoUncheckedUpdateWithoutCarrinhoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  doceId?: Prisma.IntFieldUpdateOperationsInput | number
+  doceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  eventoItemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type ItemCarrinhoUncheckedUpdateManyWithoutCarrinhoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  doceId?: Prisma.IntFieldUpdateOperationsInput | number
+  doceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  eventoItemId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ItemCarrinhoCreateManyEventoItemInput = {
+  id?: number
+  carrinhoId: number
+  doceId?: number | null
+  quantidade: number
+  configuracoes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ItemCarrinhoUpdateWithoutEventoItemInput = {
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  carrinho?: Prisma.CarrinhoUpdateOneRequiredWithoutItensNestedInput
+  doce?: Prisma.DoceUpdateOneWithoutItensCarrinhoNestedInput
+}
+
+export type ItemCarrinhoUncheckedUpdateWithoutEventoItemInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  carrinhoId?: Prisma.IntFieldUpdateOperationsInput | number
+  doceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type ItemCarrinhoUncheckedUpdateManyWithoutEventoItemInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  carrinhoId?: Prisma.IntFieldUpdateOperationsInput | number
+  doceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   configuracoes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -605,64 +770,76 @@ export type ItemCarrinhoSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   carrinhoId?: boolean
   doceId?: boolean
+  eventoItemId?: boolean
   quantidade?: boolean
   configuracoes?: boolean
   carrinho?: boolean | Prisma.CarrinhoDefaultArgs<ExtArgs>
-  doce?: boolean | Prisma.DoceDefaultArgs<ExtArgs>
+  doce?: boolean | Prisma.ItemCarrinho$doceArgs<ExtArgs>
+  eventoItem?: boolean | Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>
 }, ExtArgs["result"]["itemCarrinho"]>
 
 export type ItemCarrinhoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   carrinhoId?: boolean
   doceId?: boolean
+  eventoItemId?: boolean
   quantidade?: boolean
   configuracoes?: boolean
   carrinho?: boolean | Prisma.CarrinhoDefaultArgs<ExtArgs>
-  doce?: boolean | Prisma.DoceDefaultArgs<ExtArgs>
+  doce?: boolean | Prisma.ItemCarrinho$doceArgs<ExtArgs>
+  eventoItem?: boolean | Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>
 }, ExtArgs["result"]["itemCarrinho"]>
 
 export type ItemCarrinhoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   carrinhoId?: boolean
   doceId?: boolean
+  eventoItemId?: boolean
   quantidade?: boolean
   configuracoes?: boolean
   carrinho?: boolean | Prisma.CarrinhoDefaultArgs<ExtArgs>
-  doce?: boolean | Prisma.DoceDefaultArgs<ExtArgs>
+  doce?: boolean | Prisma.ItemCarrinho$doceArgs<ExtArgs>
+  eventoItem?: boolean | Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>
 }, ExtArgs["result"]["itemCarrinho"]>
 
 export type ItemCarrinhoSelectScalar = {
   id?: boolean
   carrinhoId?: boolean
   doceId?: boolean
+  eventoItemId?: boolean
   quantidade?: boolean
   configuracoes?: boolean
 }
 
-export type ItemCarrinhoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "carrinhoId" | "doceId" | "quantidade" | "configuracoes", ExtArgs["result"]["itemCarrinho"]>
+export type ItemCarrinhoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "carrinhoId" | "doceId" | "eventoItemId" | "quantidade" | "configuracoes", ExtArgs["result"]["itemCarrinho"]>
 export type ItemCarrinhoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   carrinho?: boolean | Prisma.CarrinhoDefaultArgs<ExtArgs>
-  doce?: boolean | Prisma.DoceDefaultArgs<ExtArgs>
+  doce?: boolean | Prisma.ItemCarrinho$doceArgs<ExtArgs>
+  eventoItem?: boolean | Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>
 }
 export type ItemCarrinhoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   carrinho?: boolean | Prisma.CarrinhoDefaultArgs<ExtArgs>
-  doce?: boolean | Prisma.DoceDefaultArgs<ExtArgs>
+  doce?: boolean | Prisma.ItemCarrinho$doceArgs<ExtArgs>
+  eventoItem?: boolean | Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>
 }
 export type ItemCarrinhoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   carrinho?: boolean | Prisma.CarrinhoDefaultArgs<ExtArgs>
-  doce?: boolean | Prisma.DoceDefaultArgs<ExtArgs>
+  doce?: boolean | Prisma.ItemCarrinho$doceArgs<ExtArgs>
+  eventoItem?: boolean | Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>
 }
 
 export type $ItemCarrinhoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ItemCarrinho"
   objects: {
     carrinho: Prisma.$CarrinhoPayload<ExtArgs>
-    doce: Prisma.$DocePayload<ExtArgs>
+    doce: Prisma.$DocePayload<ExtArgs> | null
+    eventoItem: Prisma.$EventoItemPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     carrinhoId: number
-    doceId: number
+    doceId: number | null
+    eventoItemId: number | null
     quantidade: number
     configuracoes: runtime.JsonValue
   }, ExtArgs["result"]["itemCarrinho"]>
@@ -1060,7 +1237,8 @@ readonly fields: ItemCarrinhoFieldRefs;
 export interface Prisma__ItemCarrinhoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   carrinho<T extends Prisma.CarrinhoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CarrinhoDefaultArgs<ExtArgs>>): Prisma.Prisma__CarrinhoClient<runtime.Types.Result.GetResult<Prisma.$CarrinhoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  doce<T extends Prisma.DoceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DoceDefaultArgs<ExtArgs>>): Prisma.Prisma__DoceClient<runtime.Types.Result.GetResult<Prisma.$DocePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  doce<T extends Prisma.ItemCarrinho$doceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItemCarrinho$doceArgs<ExtArgs>>): Prisma.Prisma__DoceClient<runtime.Types.Result.GetResult<Prisma.$DocePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  eventoItem<T extends Prisma.ItemCarrinho$eventoItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItemCarrinho$eventoItemArgs<ExtArgs>>): Prisma.Prisma__EventoItemClient<runtime.Types.Result.GetResult<Prisma.$EventoItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1093,6 +1271,7 @@ export interface ItemCarrinhoFieldRefs {
   readonly id: Prisma.FieldRef<"ItemCarrinho", 'Int'>
   readonly carrinhoId: Prisma.FieldRef<"ItemCarrinho", 'Int'>
   readonly doceId: Prisma.FieldRef<"ItemCarrinho", 'Int'>
+  readonly eventoItemId: Prisma.FieldRef<"ItemCarrinho", 'Int'>
   readonly quantidade: Prisma.FieldRef<"ItemCarrinho", 'Int'>
   readonly configuracoes: Prisma.FieldRef<"ItemCarrinho", 'Json'>
 }
@@ -1488,6 +1667,44 @@ export type ItemCarrinhoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many ItemCarrinhos to delete.
    */
   limit?: number
+}
+
+/**
+ * ItemCarrinho.doce
+ */
+export type ItemCarrinho$doceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Doce
+   */
+  select?: Prisma.DoceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Doce
+   */
+  omit?: Prisma.DoceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DoceInclude<ExtArgs> | null
+  where?: Prisma.DoceWhereInput
+}
+
+/**
+ * ItemCarrinho.eventoItem
+ */
+export type ItemCarrinho$eventoItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventoItem
+   */
+  select?: Prisma.EventoItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EventoItem
+   */
+  omit?: Prisma.EventoItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventoItemInclude<ExtArgs> | null
+  where?: Prisma.EventoItemWhereInput
 }
 
 /**

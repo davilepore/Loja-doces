@@ -55,11 +55,13 @@ model Carrinho {
 }
 
 model ItemCarrinho {
-  id            Int      @id @default(autoincrement())
-  carrinho      Carrinho @relation(fields: [carrinhoId], references: [id])
+  id            Int         @id @default(autoincrement())
+  carrinho      Carrinho    @relation(fields: [carrinhoId], references: [id])
   carrinhoId    Int
-  doceId        Int
-  doce          Doce     @relation(fields: [doceId], references: [id])
+  doceId        Int?
+  eventoItemId  Int?
+  doce          Doce?       @relation(fields: [doceId], references: [id])
+  eventoItem    EventoItem? @relation(fields: [eventoItemId], references: [id])
   quantidade    Int
   configuracoes Json
 }
@@ -78,13 +80,15 @@ model Evento {
 }
 
 model EventoItem {
-  id        Int     @id @default(autoincrement())
-  eventoId  Int
-  nome      String
-  descricao String?
-  preco     Float?
-  imagemUrl String?
-  evento    Evento  @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  id            Int            @id @default(autoincrement())
+  eventoId      Int
+  nome          String
+  quantidade    Int            @default(1)
+  descricao     String?
+  preco         Float?
+  imagemUrl     String?
+  evento        Evento         @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  itemCarrinhos ItemCarrinho[]
 }
 
 model Configuracao {

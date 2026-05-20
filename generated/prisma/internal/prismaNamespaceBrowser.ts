@@ -104,6 +104,7 @@ export const ItemCarrinhoScalarFieldEnum = {
   id: 'id',
   carrinhoId: 'carrinhoId',
   doceId: 'doceId',
+  eventoItemId: 'eventoItemId',
   quantidade: 'quantidade',
   configuracoes: 'configuracoes'
 } as const
@@ -130,6 +131,7 @@ export const EventoItemScalarFieldEnum = {
   id: 'id',
   eventoId: 'eventoId',
   nome: 'nome',
+  quantidade: 'quantidade',
   descricao: 'descricao',
   preco: 'preco',
   imagemUrl: 'imagemUrl'
