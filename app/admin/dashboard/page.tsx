@@ -259,12 +259,12 @@ export default async function DashboardPage() {
             >
               Próximos eventos
             </h2>
-            <a
+            <Link
               href="/admin/eventos"
               style={{ fontSize: 13, color: "#c084a8", textDecoration: "none" }}
             >
               Ver todos →
-            </a>
+            </Link>
           </div>
           <div>
             {proximosEventos.length === 0 ? (
@@ -293,7 +293,7 @@ export default async function DashboardPage() {
                   <div
                     style={{ fontSize: 14, fontWeight: 500, color: "#1a1118" }}
                   >
-                    {ev.nome}
+                    {ev.titulo}
                   </div>
                   <div style={{ fontSize: 12, color: "#aaa", marginTop: 4 }}>
                     📅{" "}

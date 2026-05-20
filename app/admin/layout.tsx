@@ -1,4 +1,3 @@
-// app/admin/layout.tsx
 "use client";
 
 import { usePathname } from "next/navigation";
@@ -28,7 +27,6 @@ export default function AdminLayout({
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
-      {/* Sidebar */}
       <aside
         style={{
           width: 240,
@@ -43,7 +41,6 @@ export default function AdminLayout({
           zIndex: 100,
         }}
       >
-        {/* Logo */}
         <div
           style={{
             padding: "28px 24px 24px",
@@ -73,7 +70,6 @@ export default function AdminLayout({
           </div>
         </div>
 
-        {/* Nav */}
         <nav style={{ flex: 1, padding: "16px 12px" }}>
           {navLinks.map((link) => {
             const active = pathname.startsWith(link.href);
@@ -103,7 +99,6 @@ export default function AdminLayout({
           })}
         </nav>
 
-        {/* Logout */}
         <div
           style={{
             padding: "16px 12px",
@@ -132,7 +127,6 @@ export default function AdminLayout({
         </div>
       </aside>
 
-      {/* Main content */}
       <main
         style={{
           marginLeft: 240,

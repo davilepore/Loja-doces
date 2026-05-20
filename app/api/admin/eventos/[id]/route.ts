@@ -3,11 +3,15 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/prisma/seed";
 import { NextResponse } from "next/server";
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> } 
+)  {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
 
-  const id = parseInt(params.id);
+  const { id: idStr } = await params;
+  const id = parseInt(idStr, 10);
   if (isNaN(id)) return NextResponse.json({ error: "ID inválido" }, { status: 400 });
 
   const body = await req.json();
@@ -32,11 +36,15 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   return NextResponse.json(evento);
 }
 
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> } 
+)  {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
 
-  const id = parseInt(params.id);
+  const { id: idStr } = await params;
+  const id = parseInt(idStr, 10);
   if (isNaN(id)) return NextResponse.json({ error: "ID inválido" }, { status: 400 });
 
 

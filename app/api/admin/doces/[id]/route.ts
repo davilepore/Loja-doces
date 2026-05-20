@@ -1,12 +1,12 @@
-// /app/api/admin/doces/[id]/route.ts
 import { prisma } from "@/prisma/seed";
-import {NextResponse} from "next/server";
+import { NextResponse } from "next/server";
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = parseInt(params.id, 10); 
+  const { id: idStr } = await params; 
+  const id = parseInt(idStr, 10);
 
   if (isNaN(id)) {
     return NextResponse.json({ error: "ID inválido" }, { status: 400 });
@@ -22,9 +22,10 @@ export async function PUT(
 
 export async function DELETE(
   _: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = parseInt(params.id, 10); 
+  const { id: idStr } = await params; 
+  const id = parseInt(idStr, 10);
 
   if (isNaN(id)) {
     return NextResponse.json({ error: "ID inválido" }, { status: 400 });
