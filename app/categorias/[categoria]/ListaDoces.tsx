@@ -6,7 +6,8 @@ import { useState } from "react";
 import FormBolos from "./FormBolos";
 import FormDocinhos from "./FormDocinhos";
 import FormSobremesas from "./FormSobremesas";
-import { ArrowLeft, Plus } from "lucide-react";
+import { ChevronLeft, ArrowLeft, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type Doce = {
   id: number;
@@ -32,6 +33,7 @@ type Props = {
 
 export default function ListaDoces({ doces, categoriaData }: Props) {
   const [doceSelecionado, setDoceSelecionado] = useState<Doce | null>(null);
+  const router = useRouter();
 
   const onAddItemClick = (doce: Doce) => {
     setDoceSelecionado(doce);
@@ -50,6 +52,12 @@ export default function ListaDoces({ doces, categoriaData }: Props) {
     <div className="bg-[#fdfaf8] min-h-screen">
       {/* Banner da Categoria */}
       <div className="relative w-full h-75 md:h-100">
+        <div
+          className="absolute top-4 left-4 z-10 bg-[#44201F]/80 p-2 rounded-full cursor-pointer"
+          onClick={() => router.back()}
+        >
+          <ChevronLeft size={24} className="text-white" />
+        </div>
         <Image
           src={categoriaData.imagem}
           alt={categoriaData.titulo}

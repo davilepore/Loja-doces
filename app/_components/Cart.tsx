@@ -8,10 +8,16 @@ import { getSessionId } from "@/lib/cartSession"; // 1. Importe sua função de 
 type ItemCarrinho = {
   id: number;
   quantidade: number;
+  configuracoes: {
+    massa: string;
+    recheio: string;
+    tamanho: string;
+  };
   doce: {
     id: number;
     nome: string;
     imagemUrl: string;
+    categoria: string;
   };
 };
 
@@ -40,6 +46,43 @@ function Cart({ close }: Props) {
     }
     loadCart();
   }, []);
+
+  const message = `Olá, gostaria de finalizar meu pedido:\n\n${itens
+    .map(
+      (item) =>
+        `- ${item.doce.nome} x ${item.quantidade}\n ${item.doce.categoria == "BOLOS" ? `Massa: ${item.configuracoes.massa}\n` : ""} ${item.configuracoes.recheio ? `Recheio: ${item.configuracoes.recheio}\n` : ""} ${item.configuracoes.tamanho ? `Cobertura: ${item.configuracoes.tamanho}\n` : ""}`,
+    )
+    .join("\n")}
+
+Total de itens: ${itens.reduce((acc, item) => acc + item.quantidade, 0)}`;
+
+  const handleSubmit = (message: string) => {
+    const url = `https://wa.me/+5521972505271?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+  };
+
+  const aumentarQuantidade = (id: number) => {
+    setItens((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item,
+      ),
+    );
+  };
+
+  const diminuirQuantidade = (id: number) => {
+    setItens((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item,
+        )
+        .filter((item) => item.quantidade > 0),
+    );
+  };
+
+  const removerItem = (id: number) => {
+    setItens((prev) => prev.filter((item) => item.id !== id));
+  };
 
   if (loading) {
     return (
@@ -116,17 +159,26 @@ function Cart({ close }: Props) {
                     </p>
                     <div className="flex items-center gap-3 mt-2">
                       <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
-                        <button className="p-1 hover:bg-gray-50 text-[#44201F] transition-colors">
+                        <button
+                          onClick={() => diminuirQuantidade(item.id)}
+                          className="p-1 hover:bg-gray-50 text-[#44201F] transition-colors"
+                        >
                           <Minus size={14} />
                         </button>
                         <span className="w-8 text-center text-sm font-bold text-[#44201F]">
                           {item.quantidade}
                         </span>
-                        <button className="p-1 hover:bg-gray-50 text-[#44201F] transition-colors">
+                        <button
+                          onClick={() => aumentarQuantidade(item.id)}
+                          className="p-1 hover:bg-gray-50 text-[#44201F] transition-colors"
+                        >
                           <Plus size={14} />
                         </button>
                       </div>
-                      <button className="p-2 text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors rounded-lg">
+                      <button
+                        onClick={() => removerItem(item.id)}
+                        className="p-2 text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors rounded-lg"
+                      >
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -148,7 +200,10 @@ function Cart({ close }: Props) {
               </span>
             </div>
 
-            <button className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 rounded-2xl font-bold shadow-lg shadow-green-200 transition-all active:scale-95">
+            <button
+              onClick={() => handleSubmit(message)}
+              className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 rounded-2xl font-bold shadow-lg shadow-green-200 transition-all active:scale-95"
+            >
               Finalizar pelo WhatsApp
               <FaWhatsapp size={20} />
             </button>
