@@ -53,7 +53,10 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Doce: 'Doce',
   Carrinho: 'Carrinho',
-  ItemCarrinho: 'ItemCarrinho'
+  ItemCarrinho: 'ItemCarrinho',
+  Evento: 'Evento',
+  EventoItem: 'EventoItem',
+  Configuracao: 'Configuracao'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -77,7 +80,12 @@ export const DoceScalarFieldEnum = {
   nome: 'nome',
   categoria: 'categoria',
   especificacao: 'especificacao',
-  imagemUrl: 'imagemUrl'
+  imagemUrl: 'imagemUrl',
+  criadoEm: 'criadoEm',
+  disponivel: 'disponivel',
+  descricao: 'descricao',
+  preco: 'preco',
+  destaque: 'destaque'
 } as const
 
 export type DoceScalarFieldEnum = (typeof DoceScalarFieldEnum)[keyof typeof DoceScalarFieldEnum]
@@ -101,6 +109,42 @@ export const ItemCarrinhoScalarFieldEnum = {
 } as const
 
 export type ItemCarrinhoScalarFieldEnum = (typeof ItemCarrinhoScalarFieldEnum)[keyof typeof ItemCarrinhoScalarFieldEnum]
+
+
+export const EventoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  dataInicio: 'dataInicio',
+  dataFim: 'dataFim',
+  imagemUrl: 'imagemUrl',
+  ativo: 'ativo',
+  criadoEm: 'criadoEm',
+  atualizadoEm: 'atualizadoEm'
+} as const
+
+export type EventoScalarFieldEnum = (typeof EventoScalarFieldEnum)[keyof typeof EventoScalarFieldEnum]
+
+
+export const EventoItemScalarFieldEnum = {
+  id: 'id',
+  eventoId: 'eventoId',
+  nome: 'nome',
+  descricao: 'descricao',
+  preco: 'preco',
+  imagemUrl: 'imagemUrl'
+} as const
+
+export type EventoItemScalarFieldEnum = (typeof EventoItemScalarFieldEnum)[keyof typeof EventoItemScalarFieldEnum]
+
+
+export const ConfiguracaoScalarFieldEnum = {
+  id: 'id',
+  chave: 'chave',
+  valor: 'valor'
+} as const
+
+export type ConfiguracaoScalarFieldEnum = (typeof ConfiguracaoScalarFieldEnum)[keyof typeof ConfiguracaoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -133,4 +177,12 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

@@ -314,10 +314,6 @@ export type CarrinhoScalarRelationFilter = {
   isNot?: Prisma.CarrinhoWhereInput
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type CarrinhoCreateNestedOneWithoutItensInput = {
   create?: Prisma.XOR<Prisma.CarrinhoCreateWithoutItensInput, Prisma.CarrinhoUncheckedCreateWithoutItensInput>
   connectOrCreate?: Prisma.CarrinhoCreateOrConnectWithoutItensInput

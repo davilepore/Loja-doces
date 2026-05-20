@@ -11,4 +11,7 @@
 export type * from './models/Doce'
 export type * from './models/Carrinho'
 export type * from './models/ItemCarrinho'
+export type * from './models/Evento'
+export type * from './models/EventoItem'
+export type * from './models/Configuracao'
 export type * from './commonInputTypes'

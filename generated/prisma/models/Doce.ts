@@ -28,10 +28,12 @@ export type AggregateDoce = {
 
 export type DoceAvgAggregateOutputType = {
   id: number | null
+  preco: number | null
 }
 
 export type DoceSumAggregateOutputType = {
   id: number | null
+  preco: number | null
 }
 
 export type DoceMinAggregateOutputType = {
@@ -40,6 +42,11 @@ export type DoceMinAggregateOutputType = {
   categoria: $Enums.Categoria | null
   especificacao: $Enums.Especificacao | null
   imagemUrl: string | null
+  criadoEm: Date | null
+  disponivel: boolean | null
+  descricao: string | null
+  preco: number | null
+  destaque: boolean | null
 }
 
 export type DoceMaxAggregateOutputType = {
@@ -48,6 +55,11 @@ export type DoceMaxAggregateOutputType = {
   categoria: $Enums.Categoria | null
   especificacao: $Enums.Especificacao | null
   imagemUrl: string | null
+  criadoEm: Date | null
+  disponivel: boolean | null
+  descricao: string | null
+  preco: number | null
+  destaque: boolean | null
 }
 
 export type DoceCountAggregateOutputType = {
@@ -56,16 +68,23 @@ export type DoceCountAggregateOutputType = {
   categoria: number
   especificacao: number
   imagemUrl: number
+  criadoEm: number
+  disponivel: number
+  descricao: number
+  preco: number
+  destaque: number
   _all: number
 }
 
 
 export type DoceAvgAggregateInputType = {
   id?: true
+  preco?: true
 }
 
 export type DoceSumAggregateInputType = {
   id?: true
+  preco?: true
 }
 
 export type DoceMinAggregateInputType = {
@@ -74,6 +93,11 @@ export type DoceMinAggregateInputType = {
   categoria?: true
   especificacao?: true
   imagemUrl?: true
+  criadoEm?: true
+  disponivel?: true
+  descricao?: true
+  preco?: true
+  destaque?: true
 }
 
 export type DoceMaxAggregateInputType = {
@@ -82,6 +106,11 @@ export type DoceMaxAggregateInputType = {
   categoria?: true
   especificacao?: true
   imagemUrl?: true
+  criadoEm?: true
+  disponivel?: true
+  descricao?: true
+  preco?: true
+  destaque?: true
 }
 
 export type DoceCountAggregateInputType = {
@@ -90,6 +119,11 @@ export type DoceCountAggregateInputType = {
   categoria?: true
   especificacao?: true
   imagemUrl?: true
+  criadoEm?: true
+  disponivel?: true
+  descricao?: true
+  preco?: true
+  destaque?: true
   _all?: true
 }
 
@@ -185,6 +219,11 @@ export type DoceGroupByOutputType = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  criadoEm: Date
+  disponivel: boolean
+  descricao: string
+  preco: number
+  destaque: boolean
   _count: DoceCountAggregateOutputType | null
   _avg: DoceAvgAggregateOutputType | null
   _sum: DoceSumAggregateOutputType | null
@@ -216,6 +255,11 @@ export type DoceWhereInput = {
   categoria?: Prisma.EnumCategoriaFilter<"Doce"> | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFilter<"Doce"> | $Enums.Especificacao
   imagemUrl?: Prisma.StringFilter<"Doce"> | string
+  criadoEm?: Prisma.DateTimeFilter<"Doce"> | Date | string
+  disponivel?: Prisma.BoolFilter<"Doce"> | boolean
+  descricao?: Prisma.StringFilter<"Doce"> | string
+  preco?: Prisma.FloatFilter<"Doce"> | number
+  destaque?: Prisma.BoolFilter<"Doce"> | boolean
   itensCarrinho?: Prisma.ItemCarrinhoListRelationFilter
 }
 
@@ -225,6 +269,11 @@ export type DoceOrderByWithRelationInput = {
   categoria?: Prisma.SortOrder
   especificacao?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
+  criadoEm?: Prisma.SortOrder
+  disponivel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   itensCarrinho?: Prisma.ItemCarrinhoOrderByRelationAggregateInput
 }
 
@@ -237,6 +286,11 @@ export type DoceWhereUniqueInput = Prisma.AtLeast<{
   categoria?: Prisma.EnumCategoriaFilter<"Doce"> | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFilter<"Doce"> | $Enums.Especificacao
   imagemUrl?: Prisma.StringFilter<"Doce"> | string
+  criadoEm?: Prisma.DateTimeFilter<"Doce"> | Date | string
+  disponivel?: Prisma.BoolFilter<"Doce"> | boolean
+  descricao?: Prisma.StringFilter<"Doce"> | string
+  preco?: Prisma.FloatFilter<"Doce"> | number
+  destaque?: Prisma.BoolFilter<"Doce"> | boolean
   itensCarrinho?: Prisma.ItemCarrinhoListRelationFilter
 }, "id">
 
@@ -246,6 +300,11 @@ export type DoceOrderByWithAggregationInput = {
   categoria?: Prisma.SortOrder
   especificacao?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
+  criadoEm?: Prisma.SortOrder
+  disponivel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   _count?: Prisma.DoceCountOrderByAggregateInput
   _avg?: Prisma.DoceAvgOrderByAggregateInput
   _max?: Prisma.DoceMaxOrderByAggregateInput
@@ -262,6 +321,11 @@ export type DoceScalarWhereWithAggregatesInput = {
   categoria?: Prisma.EnumCategoriaWithAggregatesFilter<"Doce"> | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoWithAggregatesFilter<"Doce"> | $Enums.Especificacao
   imagemUrl?: Prisma.StringWithAggregatesFilter<"Doce"> | string
+  criadoEm?: Prisma.DateTimeWithAggregatesFilter<"Doce"> | Date | string
+  disponivel?: Prisma.BoolWithAggregatesFilter<"Doce"> | boolean
+  descricao?: Prisma.StringWithAggregatesFilter<"Doce"> | string
+  preco?: Prisma.FloatWithAggregatesFilter<"Doce"> | number
+  destaque?: Prisma.BoolWithAggregatesFilter<"Doce"> | boolean
 }
 
 export type DoceCreateInput = {
@@ -269,6 +333,11 @@ export type DoceCreateInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  criadoEm?: Date | string
+  disponivel?: boolean
+  descricao?: string
+  preco?: number
+  destaque?: boolean
   itensCarrinho?: Prisma.ItemCarrinhoCreateNestedManyWithoutDoceInput
 }
 
@@ -278,6 +347,11 @@ export type DoceUncheckedCreateInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  criadoEm?: Date | string
+  disponivel?: boolean
+  descricao?: string
+  preco?: number
+  destaque?: boolean
   itensCarrinho?: Prisma.ItemCarrinhoUncheckedCreateNestedManyWithoutDoceInput
 }
 
@@ -286,6 +360,11 @@ export type DoceUpdateInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disponivel?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  preco?: Prisma.FloatFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   itensCarrinho?: Prisma.ItemCarrinhoUpdateManyWithoutDoceNestedInput
 }
 
@@ -295,6 +374,11 @@ export type DoceUncheckedUpdateInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disponivel?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  preco?: Prisma.FloatFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   itensCarrinho?: Prisma.ItemCarrinhoUncheckedUpdateManyWithoutDoceNestedInput
 }
 
@@ -304,6 +388,11 @@ export type DoceCreateManyInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  criadoEm?: Date | string
+  disponivel?: boolean
+  descricao?: string
+  preco?: number
+  destaque?: boolean
 }
 
 export type DoceUpdateManyMutationInput = {
@@ -311,6 +400,11 @@ export type DoceUpdateManyMutationInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disponivel?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  preco?: Prisma.FloatFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DoceUncheckedUpdateManyInput = {
@@ -319,6 +413,11 @@ export type DoceUncheckedUpdateManyInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disponivel?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  preco?: Prisma.FloatFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DoceCountOrderByAggregateInput = {
@@ -327,10 +426,16 @@ export type DoceCountOrderByAggregateInput = {
   categoria?: Prisma.SortOrder
   especificacao?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
+  criadoEm?: Prisma.SortOrder
+  disponivel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
 }
 
 export type DoceAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
 }
 
 export type DoceMaxOrderByAggregateInput = {
@@ -339,6 +444,11 @@ export type DoceMaxOrderByAggregateInput = {
   categoria?: Prisma.SortOrder
   especificacao?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
+  criadoEm?: Prisma.SortOrder
+  disponivel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
 }
 
 export type DoceMinOrderByAggregateInput = {
@@ -347,10 +457,16 @@ export type DoceMinOrderByAggregateInput = {
   categoria?: Prisma.SortOrder
   especificacao?: Prisma.SortOrder
   imagemUrl?: Prisma.SortOrder
+  criadoEm?: Prisma.SortOrder
+  disponivel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
 }
 
 export type DoceSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  preco?: Prisma.SortOrder
 }
 
 export type DoceScalarRelationFilter = {
@@ -368,6 +484,22 @@ export type EnumCategoriaFieldUpdateOperationsInput = {
 
 export type EnumEspecificacaoFieldUpdateOperationsInput = {
   set?: $Enums.Especificacao
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -397,6 +529,11 @@ export type DoceCreateWithoutItensCarrinhoInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  criadoEm?: Date | string
+  disponivel?: boolean
+  descricao?: string
+  preco?: number
+  destaque?: boolean
 }
 
 export type DoceUncheckedCreateWithoutItensCarrinhoInput = {
@@ -405,6 +542,11 @@ export type DoceUncheckedCreateWithoutItensCarrinhoInput = {
   categoria: $Enums.Categoria
   especificacao: $Enums.Especificacao
   imagemUrl: string
+  criadoEm?: Date | string
+  disponivel?: boolean
+  descricao?: string
+  preco?: number
+  destaque?: boolean
 }
 
 export type DoceCreateOrConnectWithoutItensCarrinhoInput = {
@@ -428,6 +570,11 @@ export type DoceUpdateWithoutItensCarrinhoInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disponivel?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  preco?: Prisma.FloatFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DoceUncheckedUpdateWithoutItensCarrinhoInput = {
@@ -436,6 +583,11 @@ export type DoceUncheckedUpdateWithoutItensCarrinhoInput = {
   categoria?: Prisma.EnumCategoriaFieldUpdateOperationsInput | $Enums.Categoria
   especificacao?: Prisma.EnumEspecificacaoFieldUpdateOperationsInput | $Enums.Especificacao
   imagemUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disponivel?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  preco?: Prisma.FloatFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -475,6 +627,11 @@ export type DoceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   categoria?: boolean
   especificacao?: boolean
   imagemUrl?: boolean
+  criadoEm?: boolean
+  disponivel?: boolean
+  descricao?: boolean
+  preco?: boolean
+  destaque?: boolean
   itensCarrinho?: boolean | Prisma.Doce$itensCarrinhoArgs<ExtArgs>
   _count?: boolean | Prisma.DoceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["doce"]>
@@ -485,6 +642,11 @@ export type DoceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   categoria?: boolean
   especificacao?: boolean
   imagemUrl?: boolean
+  criadoEm?: boolean
+  disponivel?: boolean
+  descricao?: boolean
+  preco?: boolean
+  destaque?: boolean
 }, ExtArgs["result"]["doce"]>
 
 export type DoceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -493,6 +655,11 @@ export type DoceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   categoria?: boolean
   especificacao?: boolean
   imagemUrl?: boolean
+  criadoEm?: boolean
+  disponivel?: boolean
+  descricao?: boolean
+  preco?: boolean
+  destaque?: boolean
 }, ExtArgs["result"]["doce"]>
 
 export type DoceSelectScalar = {
@@ -501,9 +668,14 @@ export type DoceSelectScalar = {
   categoria?: boolean
   especificacao?: boolean
   imagemUrl?: boolean
+  criadoEm?: boolean
+  disponivel?: boolean
+  descricao?: boolean
+  preco?: boolean
+  destaque?: boolean
 }
 
-export type DoceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "categoria" | "especificacao" | "imagemUrl", ExtArgs["result"]["doce"]>
+export type DoceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "categoria" | "especificacao" | "imagemUrl" | "criadoEm" | "disponivel" | "descricao" | "preco" | "destaque", ExtArgs["result"]["doce"]>
 export type DoceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   itensCarrinho?: boolean | Prisma.Doce$itensCarrinhoArgs<ExtArgs>
   _count?: boolean | Prisma.DoceCountOutputTypeDefaultArgs<ExtArgs>
@@ -522,6 +694,11 @@ export type $DocePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     categoria: $Enums.Categoria
     especificacao: $Enums.Especificacao
     imagemUrl: string
+    criadoEm: Date
+    disponivel: boolean
+    descricao: string
+    preco: number
+    destaque: boolean
   }, ExtArgs["result"]["doce"]>
   composites: {}
 }
@@ -951,6 +1128,11 @@ export interface DoceFieldRefs {
   readonly categoria: Prisma.FieldRef<"Doce", 'Categoria'>
   readonly especificacao: Prisma.FieldRef<"Doce", 'Especificacao'>
   readonly imagemUrl: Prisma.FieldRef<"Doce", 'String'>
+  readonly criadoEm: Prisma.FieldRef<"Doce", 'DateTime'>
+  readonly disponivel: Prisma.FieldRef<"Doce", 'Boolean'>
+  readonly descricao: Prisma.FieldRef<"Doce", 'String'>
+  readonly preco: Prisma.FieldRef<"Doce", 'Float'>
+  readonly destaque: Prisma.FieldRef<"Doce", 'Boolean'>
 }
     
 

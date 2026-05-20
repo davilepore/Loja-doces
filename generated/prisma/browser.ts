@@ -32,3 +32,18 @@ export type Carrinho = Prisma.CarrinhoModel
  * 
  */
 export type ItemCarrinho = Prisma.ItemCarrinhoModel
+/**
+ * Model Evento
+ * 
+ */
+export type Evento = Prisma.EventoModel
+/**
+ * Model EventoItem
+ * 
+ */
+export type EventoItem = Prisma.EventoItemModel
+/**
+ * Model Configuracao
+ * 
+ */
+export type Configuracao = Prisma.ConfiguracaoModel
