@@ -51,7 +51,6 @@ export default async function EventosEspeciais() {
                   )}
 
                   <div className="absolute inset-0 flex flex-col justify-end items-center pb-6 bg-linear-to-t from-[#44201F]/80 via-[#44201F]/20 to-transparent">
-                    {/* Badge de data */}
                     <DataBadge
                       dataInicio={evento.dataInicio}
                       dataFim={evento.dataFim}
@@ -68,7 +67,7 @@ export default async function EventosEspeciais() {
                     )}
 
                     <Link
-                      href={`/eventos/${evento.id}`}
+                      href={`/infosevento/${evento.id}`}
                       className="flex items-center gap-1 bg-[#7dd0c2] hover:bg-[#6bc1b3] text-[#44201F] text-[11px] font-black px-3 py-1.5 rounded-full transition-all shadow-md active:scale-95 uppercase tracking-tight"
                     >
                       Ver Evento
@@ -139,7 +138,7 @@ export default async function EventosEspeciais() {
               )}
 
               <Link
-                href={`/eventos/${evento.id}`}
+                href={`/infosevento/${evento.id}`}
                 className="flex items-center gap-1.5 bg-[#7dd0c2] hover:bg-[#6bc1b3] text-[#44201F] text-xs font-black px-4 py-2 rounded-full transition-all shadow-lg active:scale-95 uppercase tracking-tighter"
               >
                 Ver Evento
